@@ -1,0 +1,46 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/hibachi-openapi.yml
+docs: https://api-doc.hibachi.xyz/
+summary:
+  types:
+  - apiKey
+  - signature
+  api_key_in:
+  - header
+  signing:
+  - ecdsa
+  - hmac
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: >-
+    API key identifying the account, passed in the Authorization header. Required for all
+    endpoints except the public /market and /exchange endpoints. The API key does NOT sign
+    requests.
+  sources:
+  - openapi/hibachi-openapi.yml
+signing:
+  description: >-
+    Order, withdraw, and transfer payloads must additionally carry a `signature` field (65 bytes)
+    generated from the account's private/secret key. Trustless accounts (created by connecting a
+    crypto wallet) sign with an ECDSA private key; exchange-managed accounts (created via email or
+    social login) sign with an HMAC secret key. The signature is computed over a defined byte
+    layout per operation (e.g. withdraw: assetId + quantity + maxFees).
+  methods:
+  - id: ecdsa
+    account_type: trustless
+    note: ECDSA signature over the operation payload; NOT the crypto wallet's private key.
+  - id: hmac
+    account_type: exchange-managed
+    note: HMAC signature using the account's secret key.
+  signed_operations:
+  - openapi/hibachi-openapi.yml#submitWithdraw
+  - openapi/hibachi-openapi.yml#submitTransfer
+  - openapi/hibachi-openapi.yml#placeOrder
+  - openapi/hibachi-openapi.yml#placeOrdersBatch
+  - openapi/hibachi-openapi.yml#modifyOrder
+  - openapi/hibachi-openapi.yml#cancelOrder
+  - openapi/hibachi-openapi.yml#cancelAllOrders
