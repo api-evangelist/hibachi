@@ -1,0 +1,531 @@
+openapi: 3.1.0
+info:
+  title: Hibachi Capital Trade API
+  version: 1.0.0
+  description: REST API for the Hibachi stablecoin-native perpetual futures and FX exchange. Provides public market data plus authenticated account, trading, and capital (deposit/withdraw/transfer) operations. Most endpoints require an API key in the Authorization header; order, withdrawal, and transfer operations additionally require a cryptographic signature (ECDSA for trustless accounts, HMAC for exchange-managed accounts). Converted faithfully from Hibachi's published public Postman collection.
+  contact:
+    name: Hibachi
+    url: https://docs.hibachi.xyz/
+  x-apievangelist-source: https://api-doc.hibachi.xyz/
+servers:
+- url: https://api.hibachi.xyz
+  description: Account, trading and capital API (production)
+- url: https://data-api.hibachi.xyz
+  description: Market data API (production)
+tags:
+- name: Trade
+  description: 'Authenticated trading: orders, positions, account info, settlements, leverage'
+paths:
+  /trade/account/info:
+    get:
+      operationId: getAccountInfo
+      summary: /trade/account/info
+      tags:
+      - Trade
+      description: 'Usage Get account information/details Required Query Parameter accountId Key Response Fields balance (net equity) and maximalWithdraw (collateral) assets positions risk related summary: totalOrderNotional , totalPositionNotional , totalUnrealizedPnl , initialMargin , maintenanceMargin The entryNotional in positions is: entry price multiply by quantity. totalOrderNotional does not count orders that will reduce your position. leverages : the custom leverage settings set by /trade/account/leverage endpoint.'
+      parameters:
+      - name: accountId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                assets:
+                - quantity: '14.130626'
+                  symbol: USDT
+                balance: '14.186087'
+                initialMargin: '0.000000'
+                maintenanceMargin: '0.000000'
+                leverages:
+                - initialMarginRate: '0.600000'
+                  symbol: BTC/USDT-P
+                - initialMarginRate: '0.750000'
+                  symbol: ETH/USDT-P
+                maximalWithdraw: '4.152340'
+                numFreeTransfersRemaining: 96
+                positions:
+                - direction: Short
+                  entryNotional: '10.302213'
+                  notionalValue: '10.225008'
+                  quantity: '0.004310550'
+                  symbol: ETH/USDT-P
+                  unrealizedFundingPnl: '0.000000'
+                  unrealizedTradingPnl: '0.077204'
+                - direction: Short
+                  entryNotional: '2.000016'
+                  notionalValue: '1.999390'
+                  quantity: '0.0000328410'
+                  symbol: BTC/USDT-P
+                  unrealizedFundingPnl: '0.000000'
+                  unrealizedTradingPnl: '0.000625'
+                - direction: Short
+                  entryNotional: '2.000015'
+                  notionalValue: '2.022384'
+                  quantity: '0.01470600'
+                  symbol: SOL/USDT-P
+                  unrealizedFundingPnl: '0.000000'
+                  unrealizedTradingPnl: '-0.022369'
+                totalOrderNotional: '8.670066'
+                totalPositionNotional: '14.246782'
+                totalUnrealizedFundingPnl: '0.000000'
+                totalUnrealizedPnl: '0.055460'
+                totalUnrealizedTradingPnl: '0.055460'
+                tradeMakerFeeRate: null
+                tradeTakerFeeRate: null
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security:
+      - ApiKeyAuth: []
+  /trade/account/trades:
+    get:
+      operationId: getAccountTrades
+      summary: /trade/account/trades
+      tags:
+      - Trade
+      description: 'Usage Get the trade history of your account. The id returned from one response should be used for pagination. Required Query Parameter accountId Optional Query Parameters maxJournalId : This is used for pagination. This is not needed to be set on the first request. All trades with id less than or equal to this value will be returned in descending order. limit : The number of trades to return (Default: 100) contractId : The market to filter by. (Default: returns all trades across all markets) side : Filter trades by buy or sell startTime : Filter trades after startTime in Unix timestamp seconds endTime : Filter trades before endTime in Unix timestamp seconds Key Response Fields trades : an array of trades, with each element containing (at least) the following fields askAccountId askOrderId bidAccountId bidOrderId fee - fee paid (in USDT) on this trade id - unique identifier for the trade orderType - LIMIT or MARKET price quantity realizedPnl side symbol timestamp - the timestamp in unix epoch seconds when the trade occured timestamp_ns_partial - the subsecond component of the timestamp in nanoseconds isTaker - whether or not the trade took liquidity'
+      parameters:
+      - name: accountId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                trades:
+                - askAccountId: 126
+                  askOrderId: 582869893016453100
+                  bidAccountId: 131
+                  bidOrderId: 582869893208343600
+                  fee: '0.141460'
+                  id: 1818286
+                  orderType: LIMIT
+                  price: '2369.078949'
+                  quantity: '0.398074810'
+                  realizedPnl: '0.000000'
+                  side: Sell
+                  symbol: ETH/USDT-P
+                  timestamp: 1728516134
+                - askAccountId: 126
+                  askOrderId: 582869868833669100
+                  bidAccountId: 131
+                  bidOrderId: 582869893208343600
+                  fee: '0.111748'
+                  id: 1818285
+                  orderType: LIMIT
+                  price: '2370.254596'
+                  quantity: '0.314306980'
+                  realizedPnl: '-0.000001'
+                  side: Sell
+                  symbol: ETH/USDT-P
+                  timestamp: 1728516134
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security:
+      - ApiKeyAuth: []
+  /trade/account/settlements_history:
+    get:
+      operationId: getSettlementsHistory
+      summary: /trade/account/settlements_history
+      tags:
+      - Trade
+      description: Usage You can obtain the history of funding events using the /trade/account/settlements_history endpoint. Required Query Parameter accountId Optional Query Parameters page - number used for pagination limit - number of results to return for a single call contractId - the market to filter by startTime - filter events by start time endTime - filter events by end time
+      parameters:
+      - name: accountId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                settlements:
+                - direction: Long
+                  indexPrice: '0.181674880'
+                  quantity: '169893.725093'
+                  settledAmount: '-21.801042451916253'
+                  symbol: HFT/USDT-P
+                  timestamp: 1720512543
+                - direction: Short
+                  indexPrice: '57202.23399'
+                  quantity: '0.2409505256'
+                  settledAmount: '4.271524297077262'
+                  symbol: BTC/USDT-P
+                  timestamp: 1720512543
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security:
+      - ApiKeyAuth: []
+  /trade/orders:
+    get:
+      operationId: listPendingOrders
+      summary: /trade/orders
+      tags:
+      - Trade
+      description: Usage Get the pending orders of your account. Required Query Parameter accountId Response Key Fields total_quantity is the quantity you specify when you submit the order. available_quantity is the quanaity that is remaining for match. It is total_quantity minus matched quantity.
+      parameters:
+      - name: accountId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+              - accountId: 126
+                availableQuantity: '0.389560448'
+                contractId: 1
+                creationTime: 1731609679
+                orderId: '582870002718998528'
+                clientId: my-order-1
+                orderType: LIMIT
+                price: '2344.032723'
+                side: BID
+                status: PLACED
+                symbol: ETH/USDT-P
+                totalQuantity: '0.389560448'
+              - accountId: 126
+                availableQuantity: '0.161019613'
+                contractId: 1
+                creationTime: 1731609680
+                orderId: '582869893300355075'
+                clientId: null
+                orderType: LIMIT
+                price: '2384.689923'
+                side: ASK
+                status: PLACED
+                symbol: ETH/USDT-P
+                totalQuantity: '0.161019613'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security:
+      - ApiKeyAuth: []
+    post:
+      operationId: placeOrdersBatch
+      summary: /trade/orders
+      tags:
+      - Trade
+      description: 'Usage Submit multiple new order requests for an account. Supports place , and modify . The format is identical to POST /trade/order , the only differences are: accountId is specified in the top-level only once rather than for each order each order element needs to have an action field which can be either place , or modify It will return a list of responses – one for each order in the input. Signing Use below field to sign the message and pass it in to signature field (65 bytes). Refer to the Signing section for more context. nonce contractId quantity side price maxFeesPercent, should be at least the value returned from /market/exchange-info endpoint, otherwise, it will be rejected. creationDeadline (Optional) triggerPrice (Optional) Request Body Required Fields: accountId :should be one of: LIMIT, MARKET symbol: should be one of the symbol from one of the futureContracts returned by /market/exchange-info API nonce: should be a unix timestamp either ms or us unique to this order side: should be one of: ASK , BID orderType quantity price signature action : should be place ,or modify maxFeesPercent Optional Request Body Fields: creationDeadline triggerPrice orderFlags clientId (See the documentation in POST /trade/order for more details)'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              accountId: <accountId>
+              orders:
+              - action: place
+                nonce: 1714701600000000
+                symbol: ETH/USDT-P
+                orderType: LIMIT
+                side: BID
+                quantity: '1.01'
+                price: '3500.1'
+                maxFeesPercent: '0.00045'
+                signature: '0000000000000000000000000000000000000000000000000000000000000000'
+              - action: modify
+                orderId: '578721673790138369'
+                nonce: 1714701600000002
+                updatedQuantity: '0.1'
+                updatedPrice: '3500.1'
+                maxFeesPercent: '0.00045'
+                signature: '0000000000000000000000000000000000000000000000000000000000000000'
+              - action: cancel
+                orderId: '578721673790138370'
+                signature: '0000000000000000000000000000000000000000000000000000000000000000'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+              - orderId: '578721673790138368'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security:
+      - ApiKeyAuth: []
+    delete:
+      operationId: cancelAllOrders
+      summary: /trade/orders
+      tags:
+      - Trade
+      description: 'Usage Allows you to batch cancel all open orders for an account. Signing: Refer to the Signing section for more context nonce needs to be a unique valid timestamp nonce and needs to be used as the payload for signature Request Body Required Fields accountId nonce signature Optional Request Body Fields: contractId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              accountId: <accountId>
+              nonce: 1714701600000000
+              signature: '0000000000000000000000000000000000000000000000000000000000000000'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: success
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security:
+      - ApiKeyAuth: []
+  /trade/order:
+    get:
+      operationId: getOrder
+      summary: /trade/order
+      tags:
+      - Trade
+      description: 'Usage Get the details about one particular order . Required Query Parameter accountId Order identifier - exactly one of: orderId : should be the orderId returned by /trade/order or /trade/orders clientId : please see the documentation in POST /trade/order for more details nonce used when submitting the order'
+      parameters:
+      - name: orderId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: accountId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                accountId: 126
+                availableQuantity: '0.389560448'
+                contractId: 1
+                orderId: '582870002718998528'
+                clientId: my-order-1
+                orderType: LIMIT
+                price: '2344.032723'
+                side: BID
+                status: PLACED
+                symbol: ETH/USDT-P
+                totalQuantity: '0.389560448'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security:
+      - ApiKeyAuth: []
+    post:
+      operationId: placeOrder
+      summary: /trade/order
+      tags:
+      - Trade
+      description: 'Usage Submit a new order. In the response, it will return the order_id for this new order. Signing Use below field to sign the message and pass it in to signature field (65 bytes) Refer to the Signing section for more context nonce contractId quantity side price maxFeesPercent, should be at least the returned value of /market/exchange-info endpoint. Otherwise, it will be rejected. creationDeadline (Optional) triggerPrice (Optional) Required Request Body Fields: accountId : your account ID, you can get this on "API Keys" panel symbol: should be one of the symbol from one of the futureContracts returned by /market/exchange-info API nonce: should be a unix timestamp in miliseconds or microseconds, and it must be unique to this order side: should be one of: ASK , BID orderType quantity price signature maxFeesPercent Optional Request Body Fields creationDeadline triggerPrice twapConfig orderFlags clientId About order client ID A user may provide a clientId when creating an order. This ID can then be used to query , modify , or cancel that order. A valid clientId must meet the following requirements: Length is between 1 and 32 characters (inclusive). Contains only: ASCII letters ( A–Z , a–z ) ASCII digits ( 0–9 ) The dash character ( - ) Must be unique among your orders. Notes: The clientId is case-sensitive. Uniqueness is checked against active and recently inactive orders. While it may be technically possible to reuse a clientId from an older order, reuse is strongly discouraged.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              accountId: <accountId>
+              symbol: BTC/USDT-P
+              nonce: 1722449703124
+              side: ASK
+              orderType: LIMIT
+              quantity: '0.0001'
+              price: '100000'
+              signature: '0000000000000000000000000000000000000000000000000000000000000000'
+              maxFeesPercent: '0.00045'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                orderId: '578721673790138368'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security:
+      - ApiKeyAuth: []
+    put:
+      operationId: modifyOrder
+      summary: /trade/order
+      tags:
+      - Trade
+      description: 'Usage Modify an existing order. Signing Refer to the Signing section for more context Request Body Required Fields: Order identifier - exactly one of: orderId : should be the orderId returned by /trade/order or /trade/orders clientId : please see the documentation in POST /trade/order for more details nonce : nonce used to create the order initially nonce : A new unique nonce timestamp (same as if you were placing a new order). You can only update quantity and price . The symbol must remain the same. signature maxFeesPercent: should be at least the value returned by the /market/exchange-info endpoint, otherwise, it will be rejected. For clientId , please see the documentation in POST /trade/order for more details. Notes You cannot modify an order that has been partially matched.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              orderId: '578721673790138369'
+              accountId: <accountId>
+              nonce: 1714701600000002
+              updatedQuantity: '0.1'
+              updatedPrice: '3500.1'
+              maxFeesPercent: '0.00045'
+              signature: '0000000000000000000000000000000000000000000000000000000000000000'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security:
+      - ApiKeyAuth: []
+    delete:
+      operationId: cancelOrder
+      summary: /trade/order
+      tags:
+      - Trade
+      description: 'Usage Remove an existing order. Signing Use below field to sign the message and pass it in to signature field (65 bytes). Refer to the Signing section for more context Order identifier - exactly one of: orderId : should be the orderId returned by /trade/order or /trade/orders clientId : please see the documentation in POST /trade/order Request Body Required Fields: accountId Order identifier - exactly one of: orderId : should be the orderId returned by /trade/order or /trade/orders clientId : please see the documentation in POST /trade/order for more details'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              accountId: <accountId>
+              orderId: '578721673790138368'
+              signature: '0000000000000000000000000000000000000000000000000000000000000000'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security:
+      - ApiKeyAuth: []
+  /trade/account/leverage:
+    post:
+      operationId: setLeverage
+      summary: /trade/account/leverage
+      tags:
+      - Trade
+      description: 'Usage Set the custom leverage for one contract Required Query Parameter accountId symbol initialMarginRate: the inverse of leverage. ("0.5" means 2x leverage) Notes The initialMarginRate must be between the default value and 1. When you increase initialMarginRate , after that your initial margin should still be no more than your net equity.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              accountId: 156
+              symbol: BTC/USDT-P
+              initialMarginRate: '0.6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: success
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security:
+      - ApiKeyAuth: []
+  /trade/orders/history:
+    get:
+      operationId: getOrdersHistory
+      summary: /trade/orders/history
+      tags:
+      - Trade
+      description: 'Request Parameters accountId (required): The unique identifier for the account whose order history is being queried. marketSymbols (optional): Array of market symbols to filter by (e.g. ["ETH/USDT-P", "BTC/USDT-P"] ). When omitted, all markets are returned. side (optional): Filter by order side. Accepted values: buy or sell . When omitted, both sides are returned. status (optional): Filter by terminal status. Accepted values: filled , cancelled , partial_cancelled , rejected . When omitted, all statuses are returned. startTime (optional): The earliest close time to include, as a Unix timestamp in milliseconds. This is an inclusive bound — a startTime of x will include orders closed at or after x . endTime (optional): The latest close time to include, as a Unix timestamp in milliseconds. This is an inclusive bound — an endTime of x will include orders closed at or before x . cursorOrderId (optional): Pagination cursor. When provided, returns only orders with orderId strictly less than this value. Use the orderId of the last record from the previous response to fetch the next page.'
+      parameters:
+      - name: accountId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: startTime"
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: endTime
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security:
+      - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key identifying the account. Required for all endpoints except public /market and /exchange endpoints. This key does NOT sign requests; order/withdraw/transfer payloads must also carry a signature generated with your ECDSA private key (trustless accounts) or HMAC secret (exchange-managed accounts).

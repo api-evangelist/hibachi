@@ -1,0 +1,565 @@
+openapi: 3.1.0
+info:
+  title: Hibachi Capital Market API
+  version: 1.0.0
+  description: REST API for the Hibachi stablecoin-native perpetual futures and FX exchange. Provides public market data plus authenticated account, trading, and capital (deposit/withdraw/transfer) operations. Most endpoints require an API key in the Authorization header; order, withdrawal, and transfer operations additionally require a cryptographic signature (ECDSA for trustless accounts, HMAC for exchange-managed accounts). Converted faithfully from Hibachi's published public Postman collection.
+  contact:
+    name: Hibachi
+    url: https://docs.hibachi.xyz/
+  x-apievangelist-source: https://api-doc.hibachi.xyz/
+servers:
+- url: https://api.hibachi.xyz
+  description: Account, trading and capital API (production)
+- url: https://data-api.hibachi.xyz
+  description: Market data API (production)
+tags:
+- name: Market
+  description: 'Public market data: contracts, prices, stats, trades, klines, orderbook, funding rates'
+paths:
+  /market/exchange-info:
+    get:
+      operationId: getExchangeInfo
+      summary: /market/exchange-info
+      tags:
+      - Market
+      description: Usage Return exchange metadata, currently it will return all futureContracts . Also returns a list of exchange maintenance windows in the "maintenanceWindow" field. For each window, the fields "begin" and "end" denote the beginning and end of the window, in seconds since the UNIX epoch. The field "note" contains a note. The field "maintenanceStatus" can have the values "NORMAL", "UNSCHEDULED_MAINTENANCE", "SCHEDULED_MAINTENANCE". If the exchange is currently under scheduled maintenance, the field "currentMaintenanceWindow" displays information on the current maintenance window.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                feeConfig:
+                  depositFees: '0.000237'
+                  instantWithdrawDstPublicKey: cdea137cc5a43defb707ba87ede6adfa0b1f560bf673bb804fcd5743f41353a5492a17aa3dc05b9941bf4c59a63999a1d266943a5115fd1c60cd28e5df45abf9
+                  instantWithdrawalFees:
+                  - - 1000
+                    - 0.005
+                  - - 500
+                    - 0.01
+                  - - 0
+                    - 0.02
+                  tradeMakerFeeRate: '0.00015000'
+                  tradeTakerFeeRate: '0.00045000'
+                  transferFeeRate: '0.00010000'
+                  withdrawalFees: '0.000237'
+                futureContracts:
+                - displayName: BTC/USDT Perps
+                  id: 2
+                  live: true
+                  minNotional: '1'
+                  minOrderSize: '0.0000000001'
+                  orderbookGranularities:
+                  - '0.1'
+                  - '1'
+                  - '10'
+                  - '100'
+                  initialMarginRate: '0.500000'
+                  maintenanceMarginRate: '0.400000'
+                  settlementDecimals: 6
+                  settlementSymbol: USDT
+                  stepSize: '0.0000000001'
+                  symbol: BTC/USDT-P
+                  tickSize: '0.00001'
+                  underlyingDecimals: 10
+                  underlyingSymbol: BTC
+                  marketCreationTimestamp: '1727701319.73488'
+                - displayName: ETH/USDT Perps
+                  id: 1
+                  live: true
+                  minNotional: '1'
+                  minOrderSize: '0.000000001'
+                  orderbookGranularities:
+                  - '0.01'
+                  - '0.1'
+                  - '1'
+                  - '10'
+                  initialMarginRate: '0.500000'
+                  maintenanceMarginRate: '0.400000'
+                  settlementDecimals: 6
+                  settlementSymbol: USDT
+                  stepSize: '0.000000001'
+                  symbol: ETH/USDT-P
+                  tickSize: '0.000001'
+                  underlyingDecimals: 9
+                  underlyingSymbol: ETH
+                  marketCreationTimestamp: '1727701319.73488'
+                - displayName: SOL/USDT Perps
+                  id: 3
+                  live: true
+                  minNotional: '1'
+                  minOrderSize: '0.00000001'
+                  orderbookGranularities:
+                  - '0.001'
+                  - '0.01'
+                  - '0.1'
+                  - '1'
+                  initialMarginRate: '0.500000'
+                  maintenanceMarginRate: '0.400000'
+                  settlementDecimals: 6
+                  settlementSymbol: USDT
+                  stepSize: '0.00000001'
+                  symbol: SOL/USDT-P
+                  tickSize: '0.0000001'
+                  underlyingDecimals: 8
+                  underlyingSymbol: SOL
+                  marketCreationTimestamp: '1727701319.73488'
+                maintenanceWindow: []
+                status: NORMAL
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security: []
+      servers:
+      - url: https://data-api.hibachi.xyz
+        description: Market data API
+  /market/inventory:
+    get:
+      operationId: getInventory
+      summary: /market/inventory
+      tags:
+      - Market
+      description: Usage Similar to /market/exchange-info , except in addition to the contract metadata this endpoint will return price information
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                feeConfig:
+                  depositFees: '0.000237'
+                  instantWithdrawDstPublicKey: cdea137cc5a43defb707ba87ede6adfa0b1f560bf673bb804fcd5743f41353a5492a17aa3dc05b9941bf4c59a63999a1d266943a5115fd1c60cd28e5df45abf9
+                  instantWithdrawalFees:
+                  - - 1000
+                    - 0.005
+                  - - 500
+                    - 0.01
+                  - - 0
+                    - 0.02
+                  tradeMakerFeeRate: '0.00015000'
+                  tradeTakerFeeRate: '0.00045000'
+                  transferFeeRate: '0.00010000'
+                  withdrawalFees: '0.000237'
+                markets:
+                - contract:
+                    displayName: BTC/USDT Perps
+                    id: 2
+                    live: true
+                    minNotional: '1'
+                    minOrderSize: '0.0000000001'
+                    orderbookGranularities:
+                    - '0.1'
+                    - '1'
+                    - '10'
+                    - '100'
+                    initialMarginRate: '0.500000'
+                    maintenanceMarginRate: '0.400000'
+                    settlementDecimals: 6
+                    settlementSymbol: USDT
+                    stepSize: '0.0000000001'
+                    symbol: BTC/USDT-P
+                    tickSize: '0.00001'
+                    underlyingDecimals: 10
+                    underlyingSymbol: BTC
+                  info:
+                    category: null
+                    markPrice: '60688.14161'
+                    price24hAgo: '62220.01831'
+                    priceLatest: '60638.78740'
+                    tags: []
+                - contract:
+                    displayName: ETH/USDT Perps
+                    id: 1
+                    live: true
+                    minNotional: '1'
+                    minOrderSize: '0.000000001'
+                    orderbookGranularities:
+                    - '0.01'
+                    - '0.1'
+                    - '1'
+                    - '10'
+                    initialMarginRate: '0.500000'
+                    maintenanceMarginRate: '0.400000'
+                    settlementDecimals: 6
+                    settlementSymbol: USDT
+                    stepSize: '0.000000001'
+                    symbol: ETH/USDT-P
+                    tickSize: '0.000001'
+                    underlyingDecimals: 9
+                    underlyingSymbol: ETH
+                  info:
+                    category: null
+                    markPrice: '2371.199740'
+                    price24hAgo: '2443.006397'
+                    priceLatest: '2367.785983'
+                    tags: []
+                - contract:
+                    displayName: SOL/USDT Perps
+                    id: 3
+                    live: true
+                    minNotional: '1'
+                    minOrderSize: '0.00000001'
+                    orderbookGranularities:
+                    - '0.001'
+                    - '0.01'
+                    - '0.1'
+                    - '1'
+                    initialMarginRate: '0.500000'
+                    maintenanceMarginRate: '0.400000'
+                    settlementDecimals: 6
+                    settlementSymbol: USDT
+                    stepSize: '0.00000001'
+                    symbol: SOL/USDT-P
+                    tickSize: '0.0000001'
+                    underlyingDecimals: 8
+                    underlyingSymbol: SOL
+                  info:
+                    category: null
+                    markPrice: '139.6038176'
+                    price24hAgo: '143.5201703'
+                    priceLatest: '139.4504197'
+                    tags: []
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security: []
+      servers:
+      - url: https://data-api.hibachi.xyz
+        description: Market data API
+  /market/data/prices:
+    get:
+      operationId: getPrices
+      summary: /market/data/prices
+      tags:
+      - Market
+      description: 'Usage Get the price and funding information for a future contract. Required Query Parameter symbol : the symbol of the contract you get in the response from /market/exchange-info endpoint'
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                askPrice: '3514.650296'
+                bidPrice: '3513.596112'
+                fundingRateEstimation:
+                  estimatedFundingRate: '0.000001'
+                  nextFundingTimestamp: 1712707200
+                markPrice: '3514.288858'
+                spotPrice: '3514.715000'
+                symbol: ETH/USDT-P
+                tradePrice: '2372.746570'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security: []
+      servers:
+      - url: https://data-api.hibachi.xyz
+        description: Market data API
+  /market/data/stats:
+    get:
+      operationId: getStats
+      summary: /market/data/stats
+      tags:
+      - Market
+      description: 'Usage Get general trading stats like 24h high/low/volume for a future contract. Required Query Parameter symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint'
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                high24h: '3819.507827'
+                low24h: '3754.474162'
+                symbol: ETH/USDT-P
+                volume24h: '23554.858590416'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security: []
+      servers:
+      - url: https://data-api.hibachi.xyz
+        description: Market data API
+  /market/data/trades:
+    get:
+      operationId: getMarketTrades
+      summary: /market/data/trades
+      tags:
+      - Market
+      description: 'Usage Get the most recent trades from all users for one future contract. It will return most recent up to 100 records. Required Query Parameter symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint'
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                trades:
+                - price: '3512.431902'
+                  quantity: '1.414780098'
+                  takerSide: Buy
+                  timestamp: 1712692147
+                - price: '3512.783321'
+                  quantity: '1.138242707'
+                  takerSide: Sell
+                  timestamp: 1712692147
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security: []
+      servers:
+      - url: https://data-api.hibachi.xyz
+        description: Market data API
+  /market/data/klines:
+    get:
+      operationId: getKlines
+      summary: /market/data/klines
+      tags:
+      - Market
+      description: 'Usage Get the candlesticks for a futures contract. Required Query Parameters symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint interval : Supported intervals: 1min , 5min , 15min , 1h , 4h , 1d , 1w . Optional Query Parameters fromMs : the start time in Unix millisecond timestamp of the period you want to retrieve candlesticks toMs : the end time in Unix milisecond timestamp of the period you want to retrieve candlesticks'
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: interval
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: fromMs
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: toMs
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                klines:
+                - close: '3704.751036'
+                  high: '3716.530378'
+                  interval: 1h
+                  low: '3699.627883'
+                  open: '3716.406894'
+                  timestamp: 1712628000
+                  volumeNotional: '1637355.846362'
+                - close: '3693.029781'
+                  high: '3717.863717'
+                  interval: 1h
+                  low: '3682.131347'
+                  open: '3706.001256'
+                  timestamp: 1712631600
+                  volumeNotional: '3590375.750775'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security: []
+      servers:
+      - url: https://data-api.hibachi.xyz
+        description: Market data API
+  /market/data/open-interest:
+    get:
+      operationId: getOpenInterest
+      summary: /market/data/open-interest
+      tags:
+      - Market
+      description: 'Usage Get the open interest for one futures contract. It will return the total open interest from each side. Required Query Parameter symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint'
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                totalQuantity: '6.326719254'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security: []
+      servers:
+      - url: https://data-api.hibachi.xyz
+        description: Market data API
+  /market/data/orderbook:
+    get:
+      operationId: getOrderbook
+      summary: /market/data/orderbook
+      tags:
+      - Market
+      description: 'Usage Get the orderbook price levels. It will return up to depth price levels on both side. The price level will be aggreated based on granulairty . Required Request Query Parameters symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint Optional Request Query Parameters depth should be between 1 and 100, inclusive. granularity should be one of the values in orderbookGranularities returned by market/exchange-info . Different contracts may have different orderbookGranularities .'
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: depth
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                ask:
+                  endPrice: '3512.63'
+                  levels:
+                  - price: '3511.93'
+                    quantity: '0.284772482'
+                  - price: '3512.28'
+                    quantity: '0.569544964'
+                  - price: '3512.63'
+                    quantity: '0.854317446'
+                  startPrice: '3511.93'
+                bid:
+                  endPrice: '3510.87'
+                  levels:
+                  - price: '3515.39'
+                    quantity: '2.345153070'
+                  - price: '3511.22'
+                    quantity: '0.284772482'
+                  - price: '3510.87'
+                    quantity: '0.569544964'
+                  startPrice: '3515.39'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security: []
+      servers:
+      - url: https://data-api.hibachi.xyz
+        description: Market data API
+  /market/data/funding-rates:
+    get:
+      operationId: getFundingRates
+      summary: /market/data/funding-rates
+      tags:
+      - Market
+      description: 'Get the funding rate. It will return historical funding rates and index prices for a given futures contract. Notes: symbol (string, required) – The trading pair symbol (e.g., "BTC/USDT-P"). startTime (integer, optional) – Unix timestamp in seconds (with optional fractional part) specifying the start of the query window. Default: 7 days ago endTime (integer, optional) – Unix timestamp in seconds (with optional fractional part) specifying the end of the query window. Default: current server time limit (integer, optional) – Maximum number of results to return. Range: 1–100 Default: 50 offset (integer, optional) – Number of results to skip before starting to return data. Default: 0'
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: endTime
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security: []
+      servers:
+      - url: https://data-api.hibachi.xyz
+        description: Market data API
+  /exchange/utc-timestamp:
+    get:
+      operationId: getUtcTimestamp
+      summary: /exchange/utc-timestamp
+      tags:
+      - Market
+      description: Get Current UTC Timestamp Fetch the current UTC timestamp in milliseconds . This can be used for client-side time synchronization, request signing, or latency checks.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                timestampMs: 1757118802487
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - missing or invalid API key
+      security: []
+      servers:
+      - url: https://data-api.hibachi.xyz
+        description: Market data API
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key identifying the account. Required for all endpoints except public /market and /exchange endpoints. This key does NOT sign requests; order/withdraw/transfer payloads must also carry a signature generated with your ECDSA private key (trustless accounts) or HMAC secret (exchange-managed accounts).
