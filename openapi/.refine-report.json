@@ -1,0 +1,18 @@
+{
+  "provider": "hibachi",
+  "sources": [
+    "hibachi-capital-api-openapi.yml",
+    "hibachi-market-api-openapi.yml",
+    "hibachi-trade-api-openapi.yml"
+  ],
+  "outputs": [
+    "hibachi-capital-api-openapi.yml",
+    "hibachi-market-api-openapi.yml",
+    "hibachi-trade-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

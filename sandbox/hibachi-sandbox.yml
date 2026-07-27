@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: searched
+source: https://api-doc.hibachi.xyz/ (Postman collection variables + environment)
+environments:
+- name: production
+  api_url: https://api.hibachi.xyz
+  data_api_url: https://data-api.hibachi.xyz
+  api_ws: wss://api.hibachi.xyz
+  data_ws: wss://data-api.hibachi.xyz
+- name: staging
+  api_url: https://api-staging.hibachi.xyz
+  data_api_url: https://data-api-staging.hibachi.xyz
+  api_ws: wss://api-staging.hibachi.xyz
+  data_ws: wss://data-api-staging.hibachi.xyz
+  note: >-
+    Staging hosts are published as the default variable values in Hibachi's public Postman
+    collection environment, for testing against a non-production exchange.
+- name: test
+  api_url: https://api-test.hibachi.xyz
+  note: >-
+    A test host (api-test.hibachi.xyz) also appears in the collection (e.g. the
+    /trade/account/leverage example).
+notes:
+- No published magic/test card or account fixtures were found; Hibachi is a crypto perpetuals
+  exchange and testing is done against the staging environment with a funded staging account.

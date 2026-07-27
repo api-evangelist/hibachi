@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: searched
+source: https://api-doc.hibachi.xyz/, https://docs.hibachi.xyz/hibachi-docs/audits.md
+standards:
+- id: oauth2
+  conforms: false
+  evidence: API-key + request-signature auth; no OAuth2.
+- id: openidconnect
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors are plain JSON with HTTP status codes; not application/problem+json.
+- id: rest-json
+  conforms: true
+  evidence: JSON request/response REST API over HTTPS.
+- id: websocket-streaming
+  conforms: true
+  evidence: WebSocket API (wss://api.hibachi.xyz, wss://data-api.hibachi.xyz) for real-time market and trading data.
+- id: request-signing
+  conforms: true
+  evidence: ECDSA / HMAC payload signatures on order, withdraw and transfer operations.
+security_audits:
+- firm: Hexens
+  source: https://docs.hibachi.xyz/hibachi-docs/audits.md
+- firm: Quantstamp
+  source: https://docs.hibachi.xyz/hibachi-docs/audits.md
+zk_verification:
+  present: true
+  source: https://docs.hibachi.xyz/hibachi-docs/verification.md
+  note: >-
+    Settlement layer is powered by zk-verification: collateral can only move on-chain if the
+    movement is validated by a zk proof, providing cryptographic proof of system integrity.

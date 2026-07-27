@@ -1,0 +1,54 @@
+# generated: '2026-07-19'
+# method: searched
+# source: https://api-doc.hibachi.xyz/ (Hibachi API Postman collection description + environment)
+asyncapi: 3.0.0
+info:
+  title: Hibachi WebSocket API
+  version: 1.0.0
+  description: >-
+    Hibachi exposes a WebSocket API alongside its REST API for lower-latency access to real-time
+    trading and market data. Public market streams (/ws/market) require no API key; account and
+    trading streams require the same Authorization API key used by the REST API. This document
+    captures the WebSocket surface documented in Hibachi's public API documentation; per-message
+    payload schemas were not published in machine-readable form at capture time.
+servers:
+  production-api:
+    host: api.hibachi.xyz
+    protocol: wss
+    description: Account and trading WebSocket stream (authenticated).
+  production-data:
+    host: data-api.hibachi.xyz
+    protocol: wss
+    description: Market data WebSocket stream.
+  staging-api:
+    host: api-staging.hibachi.xyz
+    protocol: wss
+    description: Staging account/trading WebSocket stream.
+  staging-data:
+    host: data-api-staging.hibachi.xyz
+    protocol: wss
+    description: Staging market data WebSocket stream.
+channels:
+  market:
+    address: /ws/market
+    description: >-
+      Public real-time market data stream (prices, trades, orderbook, klines). No API key required.
+    servers:
+      - $ref: '#/servers/production-data'
+  account:
+    address: /ws
+    description: >-
+      Authenticated real-time account/trading stream. Requires the Authorization API key.
+    servers:
+      - $ref: '#/servers/production-api'
+operations:
+  receiveMarketData:
+    action: receive
+    channel:
+      $ref: '#/channels/market'
+    summary: Subscribe to real-time public market data.
+  receiveAccountUpdates:
+    action: receive
+    channel:
+      $ref: '#/channels/account'
+    summary: Subscribe to authenticated account and order updates.

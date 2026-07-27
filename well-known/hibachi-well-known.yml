@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: searched
+note: >-
+  Probed the .well-known discovery surface across the website and API hosts. No documents were
+  served (all non-200). Absence is recorded here for auditability; no WellKnown pointer is wired.
+hosts:
+- host: https://hibachi.xyz
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://api.hibachi.xyz
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+- host: https://data-api.hibachi.xyz
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+- host: https://docs.hibachi.xyz
+  documents:
+  - {path: /.well-known/security.txt, status: 404}

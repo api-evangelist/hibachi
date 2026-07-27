@@ -1,0 +1,19 @@
+generated: '2026-07-19'
+method: searched
+source: https://api-doc.hibachi.xyz/
+versioning:
+  scheme: unversioned-path
+  note: >-
+    The public REST API uses stable, unversioned paths (e.g. /trade/order, /market/data/prices).
+    No explicit API version prefix or version header was found in the published collection.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation/Sunset policy found at capture time.
+maintenance:
+  source: openapi/hibachi-openapi.yml#getExchangeInfo
+  note: >-
+    /market/exchange-info returns a `maintenanceWindow` list; each window's `begin` and `end`
+    are UNIX epoch seconds, communicating scheduled downtime programmatically.
+status_page: null
+deprecated_operations: []

@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hibachi-openapi.yml
+format: http-status
+envelope:
+  note: >-
+    Errors are returned as HTTP status codes with a plain JSON body; the API does not use
+    RFC 9457 application/problem+json. Derived from the response set in the converted OpenAPI.
+problems:
+- status: 400
+  title: Bad request
+  meaning: Malformed request, invalid parameters, or a signed payload that fails validation
+    (e.g. quantity exceeds maximalWithdraw, initialMarginRate out of range).
+- status: 401
+  title: Unauthorized
+  meaning: Missing or invalid API key in the Authorization header, or an invalid request signature.
+- status: 404
+  title: Not found
+  meaning: Referenced resource (order, account) does not exist.
+- status: 429
+  title: Too many requests
+  meaning: Rate limit exceeded (observed on the docs/API gateway).
+- status: 500
+  title: Internal server error
+  meaning: Unexpected server-side error.

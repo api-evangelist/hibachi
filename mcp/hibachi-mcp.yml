@@ -1,0 +1,91 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/hibachi-openapi.yml
+note: No official hosted MCP server found for Hibachi at capture time. Candidate tool list derived one-per-operation from
+  the converted OpenAPI.
+server:
+  name: hibachi
+  transport: stdio
+tools:
+- name: getCapitalBalance
+  description: /capital/balance
+  source_operation: openapi/hibachi-openapi.yml#getCapitalBalance
+- name: getCapitalHistory
+  description: /capital/history
+  source_operation: openapi/hibachi-openapi.yml#getCapitalHistory
+- name: submitWithdraw
+  description: /capital/withdraw
+  source_operation: openapi/hibachi-openapi.yml#submitWithdraw
+- name: submitTransfer
+  description: /capital/transfer
+  source_operation: openapi/hibachi-openapi.yml#submitTransfer
+- name: getDepositInfo
+  description: /capital/deposit-info
+  source_operation: openapi/hibachi-openapi.yml#getDepositInfo
+- name: getAccountInfo
+  description: /trade/account/info
+  source_operation: openapi/hibachi-openapi.yml#getAccountInfo
+- name: getAccountTrades
+  description: /trade/account/trades
+  source_operation: openapi/hibachi-openapi.yml#getAccountTrades
+- name: getSettlementsHistory
+  description: /trade/account/settlements_history
+  source_operation: openapi/hibachi-openapi.yml#getSettlementsHistory
+- name: listPendingOrders
+  description: /trade/orders
+  source_operation: openapi/hibachi-openapi.yml#listPendingOrders
+- name: placeOrdersBatch
+  description: /trade/orders
+  source_operation: openapi/hibachi-openapi.yml#placeOrdersBatch
+- name: cancelAllOrders
+  description: /trade/orders
+  source_operation: openapi/hibachi-openapi.yml#cancelAllOrders
+- name: getOrder
+  description: /trade/order
+  source_operation: openapi/hibachi-openapi.yml#getOrder
+- name: placeOrder
+  description: /trade/order
+  source_operation: openapi/hibachi-openapi.yml#placeOrder
+- name: modifyOrder
+  description: /trade/order
+  source_operation: openapi/hibachi-openapi.yml#modifyOrder
+- name: cancelOrder
+  description: /trade/order
+  source_operation: openapi/hibachi-openapi.yml#cancelOrder
+- name: setLeverage
+  description: /trade/account/leverage
+  source_operation: openapi/hibachi-openapi.yml#setLeverage
+- name: getOrdersHistory
+  description: /trade/orders/history
+  source_operation: openapi/hibachi-openapi.yml#getOrdersHistory
+- name: getExchangeInfo
+  description: /market/exchange-info
+  source_operation: openapi/hibachi-openapi.yml#getExchangeInfo
+- name: getInventory
+  description: /market/inventory
+  source_operation: openapi/hibachi-openapi.yml#getInventory
+- name: getPrices
+  description: /market/data/prices
+  source_operation: openapi/hibachi-openapi.yml#getPrices
+- name: getStats
+  description: /market/data/stats
+  source_operation: openapi/hibachi-openapi.yml#getStats
+- name: getMarketTrades
+  description: /market/data/trades
+  source_operation: openapi/hibachi-openapi.yml#getMarketTrades
+- name: getKlines
+  description: /market/data/klines
+  source_operation: openapi/hibachi-openapi.yml#getKlines
+- name: getOpenInterest
+  description: /market/data/open-interest
+  source_operation: openapi/hibachi-openapi.yml#getOpenInterest
+- name: getOrderbook
+  description: /market/data/orderbook
+  source_operation: openapi/hibachi-openapi.yml#getOrderbook
+- name: getFundingRates
+  description: /market/data/funding-rates
+  source_operation: openapi/hibachi-openapi.yml#getFundingRates
+- name: getUtcTimestamp
+  description: /exchange/utc-timestamp
+  source_operation: openapi/hibachi-openapi.yml#getUtcTimestamp

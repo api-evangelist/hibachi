@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: hibachi.xyz
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 10 22:08:54 2026 GMT
+  hsts: null
+- host: api.hibachi.xyz
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 10 22:08:54 2026 GMT
+  hsts: true
+  hsts_max_age: 15552000
+- host: data-api.hibachi.xyz
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 10 22:08:54 2026 GMT
+  hsts: true
+  hsts_max_age: 15552000
+domains:
+- domain: hibachi.xyz
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true

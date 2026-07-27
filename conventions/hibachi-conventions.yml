@@ -1,0 +1,54 @@
+generated: '2026-07-19'
+method: searched
+source: https://api-doc.hibachi.xyz/
+authentication:
+  style: api-key-header
+  header: Authorization
+  signing: Order/withdraw/transfer payloads carry a `signature` (ECDSA or HMAC). See authentication/hibachi-authentication.yml
+  ref: authentication/hibachi-authentication.yml
+replay_protection:
+  mechanism: nonce
+  description: >-
+    Write operations (place/modify/cancel orders, withdraw, transfer) require a unique `nonce`
+    (a valid, monotonically increasing timestamp) which is included in the signed payload. The
+    nonce prevents replay of a signed request. This is replay/deduplication protection, not a
+    formal idempotency-key contract.
+  client_reference:
+    field: clientId
+    description: >-
+      Orders may carry a client-assigned `clientId` used to reference the order later
+      (getOrder/modify/cancel by clientId instead of orderId).
+pagination:
+  styles:
+  - endpoint: /trade/account/trades
+    style: cursor
+    params: [maxJournalId]
+    note: Pass the id from the prior response as maxJournalId to page backwards; up to 100 per call.
+  - endpoint: /trade/account/settlements_history
+    style: page
+    params: [page, limit]
+  - endpoint: /trade/orders/history
+    style: cursor
+    params: [limit]
+    response_field: hasMore
+  - endpoint: /trade/account/history and capital/history
+    style: fixed-window
+    note: Returns most recent up to 100 records.
+symbols:
+  format: BASE/QUOTE-P
+  examples: [ETH/USDT-P, BTC/USDT-P, HFT/USDT-P]
+  note: Perpetual futures symbols; discover the tradable set from /market/exchange-info.
+quantities:
+  representation: string
+  note: >-
+    All asset quantities and prices are represented as strings to preserve precision;
+    internally quantities are 64-bit fixed-point numbers.
+time:
+  unit: unix
+  granularities: [seconds, milliseconds]
+  server_time: /exchange/utc-timestamp (returns timestampMs) for client clock sync and request signing.
+error_envelope:
+  ref: errors/hibachi-problem-types.yml
+rate_limits:
+  documented: false
+  note: No published numeric rate-limit table found in the public docs/collection at capture time.

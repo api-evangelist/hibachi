@@ -1,0 +1,20 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/hibachi-openapi.yml
+skills:
+- file: hibachi-place-order.md
+  name: Place a perpetual futures order on Hibachi
+  api: openapi/hibachi-openapi.yml
+  operations: [getExchangeInfo, getPrices, placeOrder, getOrder, listPendingOrders]
+- file: hibachi-cancel-orders.md
+  name: Cancel Hibachi orders
+  api: openapi/hibachi-openapi.yml
+  operations: [listPendingOrders, cancelOrder, cancelAllOrders]
+- file: hibachi-withdraw.md
+  name: Withdraw funds from Hibachi
+  api: openapi/hibachi-openapi.yml
+  operations: [getCapitalBalance, getAccountInfo, submitWithdraw, getCapitalHistory]
+- file: hibachi-market-data.md
+  name: Read Hibachi market data
+  api: openapi/hibachi-openapi.yml
+  operations: [getExchangeInfo, getPrices, getStats, getOrderbook, getKlines, getFundingRates, getMarketTrades]

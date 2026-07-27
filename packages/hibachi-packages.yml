@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.hibachi.xyz/hibachi-docs/api-and-developer-tools.md
+packages:
+- language: python
+  registry: pypi
+  name: hibachi-xyz
+  url: https://pypi.org/project/hibachi-xyz/
+  install: pip install hibachi-xyz
+  version: 0.3.1
+  source: https://github.com/hibachi-xyz/hibachi_sdk
+  docs: https://hibachi-xyz.github.io/hibachi_sdk/current/
+  official: true
+  description: Official Hibachi Python SDK for the REST and WebSocket API.
+- language: python
+  registry: pypi
+  name: ccxt
+  url: https://github.com/ccxt/ccxt
+  install: pip install ccxt
+  official: false
+  description: >-
+    Hibachi is integrated into the community CCXT unified crypto-exchange library
+    (JavaScript / TypeScript / Python / C# / PHP / Go).
+examples:
+- language: typescript
+  name: hibachi-example-js
+  url: https://github.com/hibachi-xyz/hibachi-example-js
+  official: true
+  description: Official TypeScript example integration published by Hibachi.

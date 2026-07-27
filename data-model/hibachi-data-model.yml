@@ -1,0 +1,61 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hibachi-openapi.yml
+entities:
+- name: Account
+  id_field: accountId
+  note: A Hibachi trading account; accountId found on the UI details page of each API key.
+  fields: [balance, maximalWithdraw, assets, positions, initialMargin, maintenanceMargin, leverages]
+- name: Asset
+  note: A holding within an account.
+  fields: [symbol, quantity, assetId]
+- name: FutureContract
+  id_field: contractId
+  identifier: symbol
+  note: A perpetual futures market (e.g. ETH/USDT-P). Listed via /market/exchange-info.
+  fields: [symbol, contractId]
+- name: Order
+  id_field: orderId
+  alt_id: clientId
+  fields: [accountId, contractId, symbol, orderType, side, price, totalQuantity, availableQuantity, status, nonce, signature, maxFeesPercent, creationTime]
+- name: Trade
+  id_field: id
+  fields: [askAccountId, askOrderId, bidAccountId, bidOrderId, price, quantity, fee, orderType, timestamp]
+- name: Position
+  note: Open position within an account's trade info.
+  fields: [symbol, quantity, entryNotional, unrealizedPnl]
+- name: Settlement
+  fields: [direction, indexPrice, quantity, settledAmount, symbol, timestamp]
+- name: Transaction
+  id_field: id
+  note: Deposit/withdraw capital history record.
+  fields: [assetId, blockNumber, quantity, status, timestamp, transactionHash]
+relationships:
+- from: Order
+  to: Account
+  type: belongs_to
+  via: accountId
+- from: Order
+  to: FutureContract
+  type: belongs_to
+  via: contractId
+- from: Trade
+  to: Order
+  type: belongs_to
+  via: askOrderId/bidOrderId
+- from: Position
+  to: FutureContract
+  type: belongs_to
+  via: symbol
+- from: Asset
+  to: Account
+  type: belongs_to
+  via: accountId
+- from: Settlement
+  to: FutureContract
+  type: belongs_to
+  via: symbol
+- from: Transaction
+  to: Account
+  type: belongs_to
+  via: accountId
