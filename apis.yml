@@ -130,7 +130,7 @@ common:
 - type: Postman
   url: https://api-doc.hibachi.xyz/
 - type: OpenAPI
-  url: openapi/hibachi-openapi.yml
+  url: openapi/_original/hibachi-openapi.yml
 - type: AsyncAPI
   url: asyncapi/hibachi-ws-asyncapi.yml
 - type: Authentication
