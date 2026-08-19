@@ -1,0 +1,2569 @@
+{
+  "item": [
+    {
+      "id": "60150e0f-01f8-470a-b570-588e4cda18fd",
+      "name": "Trade",
+      "description": {
+        "content": "Authenticated trading: orders, positions, account info, settlements, leverage",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fb81d2d8-2c61-47c6-8759-851dbccc7d40",
+          "name": "/trade/account/info",
+          "request": {
+            "name": "/trade/account/info",
+            "description": {
+              "content": "Usage Get account information/details Required Query Parameter accountId Key Response Fields balance (net equity) and maximalWithdraw (collateral) assets positions risk related summary: totalOrderNotional , totalPositionNotional , totalUnrealizedPnl , initialMargin , maintenanceMargin The entryNotional in positions is: entry price multiply by quantity. totalOrderNotional does not count orders that will reduce your position. leverages : the custom leverage settings set by /trade/account/leverage endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade",
+                "account",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ba45f311-9144-4216-991a-77d284b08029",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "account",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assets\": [\n    {\n      \"quantity\": \"14.130626\",\n      \"symbol\": \"USDT\"\n    }\n  ],\n  \"balance\": \"14.186087\",\n  \"initialMargin\": \"0.000000\",\n  \"maintenanceMargin\": \"0.000000\",\n  \"leverages\": [\n    {\n      \"initialMarginRate\": \"0.600000\",\n      \"symbol\": \"BTC/USDT-P\"\n    },\n    {\n      \"initialMarginRate\": \"0.750000\",\n      \"symbol\": \"ETH/USDT-P\"\n    }\n  ],\n  \"maximalWithdraw\": \"4.152340\",\n  \"numFreeTransfersRemaining\": 96,\n  \"positions\": [\n    {\n      \"direction\": \"Short\",\n      \"entryNotional\": \"10.302213\",\n      \"notionalValue\": \"10.225008\",\n      \"quantity\": \"0.004310550\",\n      \"symbol\": \"ETH/USDT-P\",\n      \"unrealizedFundingPnl\": \"0.000000\",\n      \"unrealizedTradingPnl\": \"0.077204\"\n    },\n    {\n      \"direction\": \"Short\",\n      \"entryNotional\": \"2.000016\",\n      \"notionalValue\": \"1.999390\",\n      \"quantity\": \"0.0000328410\",\n      \"symbol\": \"BTC/USDT-P\",\n      \"unrealizedFundingPnl\": \"0.000000\",\n      \"unrealizedTradingPnl\": \"0.000625\"\n    },\n    {\n      \"direction\": \"Short\",\n      \"entryNotional\": \"2.000015\",\n      \"notionalValue\": \"2.022384\",\n      \"quantity\": \"0.01470600\",\n      \"symbol\": \"SOL/USDT-P\",\n      \"unrealizedFundingPnl\": \"0.000000\",\n      \"unrealizedTradingPnl\": \"-0.022369\"\n    }\n  ],\n  \"totalOrderNotional\": \"8.670066\",\n  \"totalPositionNotional\": \"14.246782\",\n  \"totalUnrealizedFundingPnl\": \"0.000000\",\n  \"totalUnrealizedPnl\": \"0.055460\",\n  \"totalUnrealizedTradingPnl\": \"0.055460\",\n  \"tradeMakerFeeRate\": null,\n  \"tradeTakerFeeRate\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70391a41-f16c-4e70-b90e-9510d2c74025",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "account",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "547cefb4-7f01-454a-9fab-776585d39497",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "account",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3eb08724-732f-4903-a6bd-52de6260d457",
+          "name": "/trade/account/trades",
+          "request": {
+            "name": "/trade/account/trades",
+            "description": {
+              "content": "Usage Get the trade history of your account. The id returned from one response should be used for pagination. Required Query Parameter accountId Optional Query Parameters maxJournalId : This is used for pagination. This is not needed to be set on the first request. All trades with id less than or equal to this value will be returned in descending order. limit : The number of trades to return (Default: 100) contractId : The market to filter by. (Default: returns all trades across all markets) side : Filter trades by buy or sell startTime : Filter trades after startTime in Unix timestamp seconds endTime : Filter trades before endTime in Unix timestamp seconds Key Response Fields trades : an array of trades, with each element containing (at least) the following fields askAccountId askOrderId bidAccountId bidOrderId fee - fee paid (in USDT) on this trade id - unique identifier for the trade orderType - LIMIT or MARKET price quantity realizedPnl side symbol timestamp - the timestamp in unix epoch seconds when the trade occured timestamp_ns_partial - the subsecond component of the timestamp in nanoseconds isTaker - whether or not the trade took liquidity",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade",
+                "account",
+                "trades"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9067e1f3-5b17-450b-b015-b9ae5e6b50fb",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "account",
+                    "trades"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"trades\": [\n    {\n      \"askAccountId\": 126,\n      \"askOrderId\": 582869893016453100,\n      \"bidAccountId\": 131,\n      \"bidOrderId\": 582869893208343600,\n      \"fee\": \"0.141460\",\n      \"id\": 1818286,\n      \"orderType\": \"LIMIT\",\n      \"price\": \"2369.078949\",\n      \"quantity\": \"0.398074810\",\n      \"realizedPnl\": \"0.000000\",\n      \"side\": \"Sell\",\n      \"symbol\": \"ETH/USDT-P\",\n      \"timestamp\": 1728516134\n    },\n    {\n      \"askAccountId\": 126,\n      \"askOrderId\": 582869868833669100,\n      \"bidAccountId\": 131,\n      \"bidOrderId\": 582869893208343600,\n      \"fee\": \"0.111748\",\n      \"id\": 1818285,\n      \"orderType\": \"LIMIT\",\n      \"price\": \"2370.254596\",\n      \"quantity\": \"0.314306980\",\n      \"realizedPnl\": \"-0.000001\",\n      \"side\": \"Sell\",\n      \"symbol\": \"ETH/USDT-P\",\n      \"timestamp\": 1728516134\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebbfc152-35c9-41ec-9955-2e408eb8e4a5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "account",
+                    "trades"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ebcea9d4-20a3-4d7a-833c-fd447670c5e9",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "account",
+                    "trades"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dd06cc2-3e33-4718-b858-a12656eb3940",
+          "name": "/trade/account/settlements_history",
+          "request": {
+            "name": "/trade/account/settlements_history",
+            "description": {
+              "content": "Usage You can obtain the history of funding events using the /trade/account/settlements_history endpoint. Required Query Parameter accountId Optional Query Parameters page - number used for pagination limit - number of results to return for a single call contractId - the market to filter by startTime - filter events by start time endTime - filter events by end time",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade",
+                "account",
+                "settlements_history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "47207196-0dec-4b3f-a660-080effc937e4",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "account",
+                    "settlements_history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"settlements\": [\n    {\n      \"direction\": \"Long\",\n      \"indexPrice\": \"0.181674880\",\n      \"quantity\": \"169893.725093\",\n      \"settledAmount\": \"-21.801042451916253\",\n      \"symbol\": \"HFT/USDT-P\",\n      \"timestamp\": 1720512543\n    },\n    {\n      \"direction\": \"Short\",\n      \"indexPrice\": \"57202.23399\",\n      \"quantity\": \"0.2409505256\",\n      \"settledAmount\": \"4.271524297077262\",\n      \"symbol\": \"BTC/USDT-P\",\n      \"timestamp\": 1720512543\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23496769-6e82-4800-b819-60bb7ca11644",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "account",
+                    "settlements_history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "933e65f6-a055-4f5d-be6f-26380da9d363",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "account",
+                    "settlements_history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae838bd1-a833-483a-881b-514a43c94eef",
+          "name": "/trade/orders",
+          "request": {
+            "name": "/trade/orders",
+            "description": {
+              "content": "Usage Get the pending orders of your account. Required Query Parameter accountId Response Key Fields total_quantity is the quantity you specify when you submit the order. available_quantity is the quanaity that is remaining for match. It is total_quantity minus matched quantity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e505ff66-02d0-4956-99ff-4a5b1b0aa663",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"accountId\": 126,\n    \"availableQuantity\": \"0.389560448\",\n    \"contractId\": 1,\n    \"creationTime\": 1731609679,\n    \"orderId\": \"582870002718998528\",\n    \"clientId\": \"my-order-1\",\n    \"orderType\": \"LIMIT\",\n    \"price\": \"2344.032723\",\n    \"side\": \"BID\",\n    \"status\": \"PLACED\",\n    \"symbol\": \"ETH/USDT-P\",\n    \"totalQuantity\": \"0.389560448\"\n  },\n  {\n    \"accountId\": 126,\n    \"availableQuantity\": \"0.161019613\",\n    \"contractId\": 1,\n    \"creationTime\": 1731609680,\n    \"orderId\": \"582869893300355075\",\n    \"clientId\": null,\n    \"orderType\": \"LIMIT\",\n    \"price\": \"2384.689923\",\n    \"side\": \"ASK\",\n    \"status\": \"PLACED\",\n    \"symbol\": \"ETH/USDT-P\",\n    \"totalQuantity\": \"0.161019613\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f678a25c-600b-40f1-8e16-c6ea3c34bdb8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d25e54be-a700-482a-92f6-cc0dec48c959",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec40eadc-d80e-4d49-a3e8-42c4ad029b47",
+          "name": "/trade/orders",
+          "request": {
+            "name": "/trade/orders",
+            "description": {
+              "content": "Usage Submit multiple new order requests for an account. Supports place , and modify . The format is identical to POST /trade/order , the only differences are: accountId is specified in the top-level only once rather than for each order each order element needs to have an action field which can be either place , or modify It will return a list of responses – one for each order in the input. Signing Use below field to sign the message and pass it in to signature field (65 bytes). Refer to the Signing section for more context. nonce contractId quantity side price maxFeesPercent, should be at least the value returned from /market/exchange-info endpoint, otherwise, it will be rejected. creationDeadline (Optional) triggerPrice (Optional) Request Body Required Fields: accountId :should be one of: LIMIT, MARKET symbol: should be one of the symbol from one of the futureContracts returned by /market/exchange-info API nonce: should be a unix timestamp either ms or us unique to this order side: should be one of: ASK , BID orderType quantity price signature action : should be place ,or modify maxFeesPercent Optional Request Body Fields: creationDeadline triggerPrice orderFlags clientId (See the documentation in POST /trade/order for more details)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "56fe475d-8ab5-4d71-90a8-3559d153699d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<accountId>\",\n  \"orders\": [\n    {\n      \"action\": \"place\",\n      \"nonce\": 1714701600000000,\n      \"symbol\": \"ETH/USDT-P\",\n      \"orderType\": \"LIMIT\",\n      \"side\": \"BID\",\n      \"quantity\": \"1.01\",\n      \"price\": \"3500.1\",\n      \"maxFeesPercent\": \"0.00045\",\n      \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n    },\n    {\n      \"action\": \"modify\",\n      \"orderId\": \"578721673790138369\",\n      \"nonce\": 1714701600000002,\n      \"updatedQuantity\": \"0.1\",\n      \"updatedPrice\": \"3500.1\",\n      \"maxFeesPercent\": \"0.00045\",\n      \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n    },\n    {\n      \"action\": \"cancel\",\n      \"orderId\": \"578721673790138370\",\n      \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"orderId\": \"578721673790138368\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c7cabfa-bf69-4a4f-833b-0f1b6ffed2b5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<accountId>\",\n  \"orders\": [\n    {\n      \"action\": \"place\",\n      \"nonce\": 1714701600000000,\n      \"symbol\": \"ETH/USDT-P\",\n      \"orderType\": \"LIMIT\",\n      \"side\": \"BID\",\n      \"quantity\": \"1.01\",\n      \"price\": \"3500.1\",\n      \"maxFeesPercent\": \"0.00045\",\n      \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n    },\n    {\n      \"action\": \"modify\",\n      \"orderId\": \"578721673790138369\",\n      \"nonce\": 1714701600000002,\n      \"updatedQuantity\": \"0.1\",\n      \"updatedPrice\": \"3500.1\",\n      \"maxFeesPercent\": \"0.00045\",\n      \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n    },\n    {\n      \"action\": \"cancel\",\n      \"orderId\": \"578721673790138370\",\n      \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6379a75b-cdef-4c78-a078-4c323473963f",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<accountId>\",\n  \"orders\": [\n    {\n      \"action\": \"place\",\n      \"nonce\": 1714701600000000,\n      \"symbol\": \"ETH/USDT-P\",\n      \"orderType\": \"LIMIT\",\n      \"side\": \"BID\",\n      \"quantity\": \"1.01\",\n      \"price\": \"3500.1\",\n      \"maxFeesPercent\": \"0.00045\",\n      \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n    },\n    {\n      \"action\": \"modify\",\n      \"orderId\": \"578721673790138369\",\n      \"nonce\": 1714701600000002,\n      \"updatedQuantity\": \"0.1\",\n      \"updatedPrice\": \"3500.1\",\n      \"maxFeesPercent\": \"0.00045\",\n      \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n    },\n    {\n      \"action\": \"cancel\",\n      \"orderId\": \"578721673790138370\",\n      \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73604ee6-3166-499c-8a46-e65fa91d5700",
+          "name": "/trade/orders",
+          "request": {
+            "name": "/trade/orders",
+            "description": {
+              "content": "Usage Allows you to batch cancel all open orders for an account. Signing: Refer to the Signing section for more context nonce needs to be a unique valid timestamp nonce and needs to be used as the payload for signature Request Body Required Fields accountId nonce signature Optional Request Body Fields: contractId",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7263348e-164a-431b-836e-db8f4ef6940c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<accountId>\",\n  \"nonce\": 1714701600000000,\n  \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a32afa6-f08b-4962-a733-ae9ac00500d8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<accountId>\",\n  \"nonce\": 1714701600000000,\n  \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6fe6009a-3ede-4041-b361-7deb1bdf9e3e",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<accountId>\",\n  \"nonce\": 1714701600000000,\n  \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7278565f-8306-43a3-9825-1e2282c583ae",
+          "name": "/trade/order",
+          "request": {
+            "name": "/trade/order",
+            "description": {
+              "content": "Usage Get the details about one particular order . Required Query Parameter accountId Order identifier - exactly one of: orderId : should be the orderId returned by /trade/order or /trade/orders clientId : please see the documentation in POST /trade/order for more details nonce used when submitting the order",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "orderId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "daf24e7f-7649-4da8-8dd6-eeb902191085",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": 126,\n  \"availableQuantity\": \"0.389560448\",\n  \"contractId\": 1,\n  \"orderId\": \"582870002718998528\",\n  \"clientId\": \"my-order-1\",\n  \"orderType\": \"LIMIT\",\n  \"price\": \"2344.032723\",\n  \"side\": \"BID\",\n  \"status\": \"PLACED\",\n  \"symbol\": \"ETH/USDT-P\",\n  \"totalQuantity\": \"0.389560448\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c0d5973-c5ae-469e-a53f-def264dd1dfc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6aff7e27-64ba-467a-9677-072aab27c0b9",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5c941ab-74e6-484f-a46f-511fa900cf9a",
+          "name": "/trade/order",
+          "request": {
+            "name": "/trade/order",
+            "description": {
+              "content": "Usage Submit a new order. In the response, it will return the order_id for this new order. Signing Use below field to sign the message and pass it in to signature field (65 bytes) Refer to the Signing section for more context nonce contractId quantity side price maxFeesPercent, should be at least the returned value of /market/exchange-info endpoint. Otherwise, it will be rejected. creationDeadline (Optional) triggerPrice (Optional) Required Request Body Fields: accountId : your account ID, you can get this on \"API Keys\" panel symbol: should be one of the symbol from one of the futureContracts returned by /market/exchange-info API nonce: should be a unix timestamp in miliseconds or microseconds, and it must be unique to this order side: should be one of: ASK , BID orderType quantity price signature maxFeesPercent Optional Request Body Fields creationDeadline triggerPrice twapConfig orderFlags clientId About order client ID A user may provide a clientId when creating an order. This ID can then be used to query , modify , or cancel that order. A valid clientId must meet the following requirements: Length is between 1 and 32 characters (inclusive). Contains only: ASCII letters ( A–Z , a–z ) ASCII digits ( 0–9 ) The dash character ( - ) Must be unique among your orders. Notes: The clientId is case-sensitive. Uniqueness is checked against active and recently inactive orders. While it may be technically possible to reuse a clientId from an older order, reuse is strongly discouraged.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8c098023-f760-4a7e-aacc-441eadc46bf0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<accountId>\",\n  \"symbol\": \"BTC/USDT-P\",\n  \"nonce\": 1722449703124,\n  \"side\": \"ASK\",\n  \"orderType\": \"LIMIT\",\n  \"quantity\": \"0.0001\",\n  \"price\": \"100000\",\n  \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\",\n  \"maxFeesPercent\": \"0.00045\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderId\": \"578721673790138368\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76c882e6-8fb6-48d0-b9fe-9e504062d48c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<accountId>\",\n  \"symbol\": \"BTC/USDT-P\",\n  \"nonce\": 1722449703124,\n  \"side\": \"ASK\",\n  \"orderType\": \"LIMIT\",\n  \"quantity\": \"0.0001\",\n  \"price\": \"100000\",\n  \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\",\n  \"maxFeesPercent\": \"0.00045\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a9fff358-53b3-4a2b-8217-fd8982b5d4e7",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<accountId>\",\n  \"symbol\": \"BTC/USDT-P\",\n  \"nonce\": 1722449703124,\n  \"side\": \"ASK\",\n  \"orderType\": \"LIMIT\",\n  \"quantity\": \"0.0001\",\n  \"price\": \"100000\",\n  \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\",\n  \"maxFeesPercent\": \"0.00045\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0eefb2c2-c0c8-4fa4-b361-031048915f90",
+          "name": "/trade/order",
+          "request": {
+            "name": "/trade/order",
+            "description": {
+              "content": "Usage Modify an existing order. Signing Refer to the Signing section for more context Request Body Required Fields: Order identifier - exactly one of: orderId : should be the orderId returned by /trade/order or /trade/orders clientId : please see the documentation in POST /trade/order for more details nonce : nonce used to create the order initially nonce : A new unique nonce timestamp (same as if you were placing a new order). You can only update quantity and price . The symbol must remain the same. signature maxFeesPercent: should be at least the value returned by the /market/exchange-info endpoint, otherwise, it will be rejected. For clientId , please see the documentation in POST /trade/order for more details. Notes You cannot modify an order that has been partially matched.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9e2f2be-443f-473a-a4de-1b1af3bcaabe",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderId\": \"578721673790138369\",\n  \"accountId\": \"<accountId>\",\n  \"nonce\": 1714701600000002,\n  \"updatedQuantity\": \"0.1\",\n  \"updatedPrice\": \"3500.1\",\n  \"maxFeesPercent\": \"0.00045\",\n  \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e55ef43f-9a6e-4f03-b915-cb3f8ad8b862",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderId\": \"578721673790138369\",\n  \"accountId\": \"<accountId>\",\n  \"nonce\": 1714701600000002,\n  \"updatedQuantity\": \"0.1\",\n  \"updatedPrice\": \"3500.1\",\n  \"maxFeesPercent\": \"0.00045\",\n  \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a3a3c59d-c79e-42c8-8853-4b281ef49537",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderId\": \"578721673790138369\",\n  \"accountId\": \"<accountId>\",\n  \"nonce\": 1714701600000002,\n  \"updatedQuantity\": \"0.1\",\n  \"updatedPrice\": \"3500.1\",\n  \"maxFeesPercent\": \"0.00045\",\n  \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67e94b65-c0d6-40c6-bd74-cbe926979b6f",
+          "name": "/trade/order",
+          "request": {
+            "name": "/trade/order",
+            "description": {
+              "content": "Usage Remove an existing order. Signing Use below field to sign the message and pass it in to signature field (65 bytes). Refer to the Signing section for more context Order identifier - exactly one of: orderId : should be the orderId returned by /trade/order or /trade/orders clientId : please see the documentation in POST /trade/order Request Body Required Fields: accountId Order identifier - exactly one of: orderId : should be the orderId returned by /trade/order or /trade/orders clientId : please see the documentation in POST /trade/order for more details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11e2a1a2-4f9c-4c81-bfc7-9f7c992c56dd",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<accountId>\",\n  \"orderId\": \"578721673790138368\",\n  \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f9f76a6-12ae-45fd-a660-2f5dc0b584c7",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<accountId>\",\n  \"orderId\": \"578721673790138368\",\n  \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "31e584e2-d379-4893-a407-ee21622d22e0",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<accountId>\",\n  \"orderId\": \"578721673790138368\",\n  \"signature\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42e7e153-1716-4c7f-98e0-c5133627bb66",
+          "name": "/trade/account/leverage",
+          "request": {
+            "name": "/trade/account/leverage",
+            "description": {
+              "content": "Usage Set the custom leverage for one contract Required Query Parameter accountId symbol initialMarginRate: the inverse of leverage. (\"0.5\" means 2x leverage) Notes The initialMarginRate must be between the default value and 1. When you increase initialMarginRate , after that your initial margin should still be no more than your net equity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade",
+                "account",
+                "leverage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67d7893f-3e86-4465-a0ee-c79935d05144",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "account",
+                    "leverage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": 156,\n  \"symbol\": \"BTC/USDT-P\",\n  \"initialMarginRate\": \"0.6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9297325-9982-47f2-a26a-514d348d29ce",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "account",
+                    "leverage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": 156,\n  \"symbol\": \"BTC/USDT-P\",\n  \"initialMarginRate\": \"0.6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53325337-1b2e-47ab-879a-195e748c36b7",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "account",
+                    "leverage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": 156,\n  \"symbol\": \"BTC/USDT-P\",\n  \"initialMarginRate\": \"0.6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2e14308-d3c5-4bb9-8553-78f9ffb4229c",
+          "name": "/trade/orders/history",
+          "request": {
+            "name": "/trade/orders/history",
+            "description": {
+              "content": "Request Parameters accountId (required): The unique identifier for the account whose order history is being queried. marketSymbols (optional): Array of market symbols to filter by (e.g. [\"ETH/USDT-P\", \"BTC/USDT-P\"] ). When omitted, all markets are returned. side (optional): Filter by order side. Accepted values: buy or sell . When omitted, both sides are returned. status (optional): Filter by terminal status. Accepted values: filled , cancelled , partial_cancelled , rejected . When omitted, all statuses are returned. startTime (optional): The earliest close time to include, as a Unix timestamp in milliseconds. This is an inclusive bound — a startTime of x will include orders closed at or after x . endTime (optional): The latest close time to include, as a Unix timestamp in milliseconds. This is an inclusive bound — an endTime of x will include orders closed at or before x . cursorOrderId (optional): Pagination cursor. When provided, returns only orders with orderId strictly less than this value. Use the orderId of the last record from the previous response to fetch the next page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trade",
+                "orders",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime\"",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "05b74300-8a5e-40d5-94e8-fde2a990f480",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "orders",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime\"",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5900fbcb-651d-4682-87f2-04d6c5202c8c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "orders",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime\"",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e89b97d-627b-4e81-860b-6a2ecce268c0",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trade",
+                    "orders",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime\"",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hibachi.xyz",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "23c8960e-d950-4bb0-a923-6e500c1bb813",
+    "name": "Hibachi Capital Trade API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Hibachi stablecoin-native perpetual futures and FX exchange. Provides public market data plus authenticated account, trading, and capital (deposit/withdraw/transfer) operations. Most endpoints require an API key in the Authorization header; order, withdrawal, and transfer operations additionally require a cryptographic signature (ECDSA for trustless accounts, HMAC for exchange-managed accounts). Converted faithfully from Hibachi's published public Postman collection.\n\nContact Support:\n Name: Hibachi",
+      "type": "text/plain"
+    }
+  }
+}

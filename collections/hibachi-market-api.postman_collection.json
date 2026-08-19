@@ -1,0 +1,1790 @@
+{
+  "item": [
+    {
+      "id": "b488ce72-f333-4212-b792-db9139e0c9ca",
+      "name": "Market",
+      "description": {
+        "content": "Public market data: contracts, prices, stats, trades, klines, orderbook, funding rates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "48190c64-2075-49bb-977c-dfb4bbd232e3",
+          "name": "/market/exchange-info",
+          "request": {
+            "name": "/market/exchange-info",
+            "description": {
+              "content": "Usage Return exchange metadata, currently it will return all futureContracts . Also returns a list of exchange maintenance windows in the \"maintenanceWindow\" field. For each window, the fields \"begin\" and \"end\" denote the beginning and end of the window, in seconds since the UNIX epoch. The field \"note\" contains a note. The field \"maintenanceStatus\" can have the values \"NORMAL\", \"UNSCHEDULED_MAINTENANCE\", \"SCHEDULED_MAINTENANCE\". If the exchange is currently under scheduled maintenance, the field \"currentMaintenanceWindow\" displays information on the current maintenance window.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "market",
+                "exchange-info"
+              ],
+              "host": [
+                "data-api",
+                "hibachi",
+                "xyz"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee8b6bfd-0473-46ae-b8f7-01eef6399d3d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "exchange-info"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feeConfig\": {\n    \"depositFees\": \"0.000237\",\n    \"instantWithdrawDstPublicKey\": \"cdea137cc5a43defb707ba87ede6adfa0b1f560bf673bb804fcd5743f41353a5492a17aa3dc05b9941bf4c59a63999a1d266943a5115fd1c60cd28e5df45abf9\",\n    \"instantWithdrawalFees\": [\n      [\n        1000,\n        0.005\n      ],\n      [\n        500,\n        0.01\n      ],\n      [\n        0,\n        0.02\n      ]\n    ],\n    \"tradeMakerFeeRate\": \"0.00015000\",\n    \"tradeTakerFeeRate\": \"0.00045000\",\n    \"transferFeeRate\": \"0.00010000\",\n    \"withdrawalFees\": \"0.000237\"\n  },\n  \"futureContracts\": [\n    {\n      \"displayName\": \"BTC/USDT Perps\",\n      \"id\": 2,\n      \"live\": true,\n      \"minNotional\": \"1\",\n      \"minOrderSize\": \"0.0000000001\",\n      \"orderbookGranularities\": [\n        \"0.1\",\n        \"1\",\n        \"10\",\n        \"100\"\n      ],\n      \"initialMarginRate\": \"0.500000\",\n      \"maintenanceMarginRate\": \"0.400000\",\n      \"settlementDecimals\": 6,\n      \"settlementSymbol\": \"USDT\",\n      \"stepSize\": \"0.0000000001\",\n      \"symbol\": \"BTC/USDT-P\",\n      \"tickSize\": \"0.00001\",\n      \"underlyingDecimals\": 10,\n      \"underlyingSymbol\": \"BTC\",\n      \"marketCreationTimestamp\": \"1727701319.73488\"\n    },\n    {\n      \"displayName\": \"ETH/USDT Perps\",\n      \"id\": 1,\n      \"live\": true,\n      \"minNotional\": \"1\",\n      \"minOrderSize\": \"0.000000001\",\n      \"orderbookGranularities\": [\n        \"0.01\",\n        \"0.1\",\n        \"1\",\n        \"10\"\n      ],\n      \"initialMarginRate\": \"0.500000\",\n      \"maintenanceMarginRate\": \"0.400000\",\n      \"settlementDecimals\": 6,\n      \"settlementSymbol\": \"USDT\",\n      \"stepSize\": \"0.000000001\",\n      \"symbol\": \"ETH/USDT-P\",\n      \"tickSize\": \"0.000001\",\n      \"underlyingDecimals\": 9,\n      \"underlyingSymbol\": \"ETH\",\n      \"marketCreationTimestamp\": \"1727701319.73488\"\n    },\n    {\n      \"displayName\": \"SOL/USDT Perps\",\n      \"id\": 3,\n      \"live\": true,\n      \"minNotional\": \"1\",\n      \"minOrderSize\": \"0.00000001\",\n      \"orderbookGranularities\": [\n        \"0.001\",\n        \"0.01\",\n        \"0.1\",\n        \"1\"\n      ],\n      \"initialMarginRate\": \"0.500000\",\n      \"maintenanceMarginRate\": \"0.400000\",\n      \"settlementDecimals\": 6,\n      \"settlementSymbol\": \"USDT\",\n      \"stepSize\": \"0.00000001\",\n      \"symbol\": \"SOL/USDT-P\",\n      \"tickSize\": \"0.0000001\",\n      \"underlyingDecimals\": 8,\n      \"underlyingSymbol\": \"SOL\",\n      \"marketCreationTimestamp\": \"1727701319.73488\"\n    }\n  ],\n  \"maintenanceWindow\": [],\n  \"status\": \"NORMAL\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c500e8f4-16da-4701-bb08-037fec25370b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "exchange-info"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "846ce352-b355-4b39-83f7-c568c7a1e7ac",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "exchange-info"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3430281e-0c3e-46c2-8808-a92280abe2c7",
+          "name": "/market/inventory",
+          "request": {
+            "name": "/market/inventory",
+            "description": {
+              "content": "Usage Similar to /market/exchange-info , except in addition to the contract metadata this endpoint will return price information",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "market",
+                "inventory"
+              ],
+              "host": [
+                "data-api",
+                "hibachi",
+                "xyz"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66bf5981-fb34-455a-8d66-4c75bf223e47",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "inventory"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feeConfig\": {\n    \"depositFees\": \"0.000237\",\n    \"instantWithdrawDstPublicKey\": \"cdea137cc5a43defb707ba87ede6adfa0b1f560bf673bb804fcd5743f41353a5492a17aa3dc05b9941bf4c59a63999a1d266943a5115fd1c60cd28e5df45abf9\",\n    \"instantWithdrawalFees\": [\n      [\n        1000,\n        0.005\n      ],\n      [\n        500,\n        0.01\n      ],\n      [\n        0,\n        0.02\n      ]\n    ],\n    \"tradeMakerFeeRate\": \"0.00015000\",\n    \"tradeTakerFeeRate\": \"0.00045000\",\n    \"transferFeeRate\": \"0.00010000\",\n    \"withdrawalFees\": \"0.000237\"\n  },\n  \"markets\": [\n    {\n      \"contract\": {\n        \"displayName\": \"BTC/USDT Perps\",\n        \"id\": 2,\n        \"live\": true,\n        \"minNotional\": \"1\",\n        \"minOrderSize\": \"0.0000000001\",\n        \"orderbookGranularities\": [\n          \"0.1\",\n          \"1\",\n          \"10\",\n          \"100\"\n        ],\n        \"initialMarginRate\": \"0.500000\",\n        \"maintenanceMarginRate\": \"0.400000\",\n        \"settlementDecimals\": 6,\n        \"settlementSymbol\": \"USDT\",\n        \"stepSize\": \"0.0000000001\",\n        \"symbol\": \"BTC/USDT-P\",\n        \"tickSize\": \"0.00001\",\n        \"underlyingDecimals\": 10,\n        \"underlyingSymbol\": \"BTC\"\n      },\n      \"info\": {\n        \"category\": null,\n        \"markPrice\": \"60688.14161\",\n        \"price24hAgo\": \"62220.01831\",\n        \"priceLatest\": \"60638.78740\",\n        \"tags\": []\n      }\n    },\n    {\n      \"contract\": {\n        \"displayName\": \"ETH/USDT Perps\",\n        \"id\": 1,\n        \"live\": true,\n        \"minNotional\": \"1\",\n        \"minOrderSize\": \"0.000000001\",\n        \"orderbookGranularities\": [\n          \"0.01\",\n          \"0.1\",\n          \"1\",\n          \"10\"\n        ],\n        \"initialMarginRate\": \"0.500000\",\n        \"maintenanceMarginRate\": \"0.400000\",\n        \"settlementDecimals\": 6,\n        \"settlementSymbol\": \"USDT\",\n        \"stepSize\": \"0.000000001\",\n        \"symbol\": \"ETH/USDT-P\",\n        \"tickSize\": \"0.000001\",\n        \"underlyingDecimals\": 9,\n        \"underlyingSymbol\": \"ETH\"\n      },\n      \"info\": {\n        \"category\": null,\n        \"markPrice\": \"2371.199740\",\n        \"price24hAgo\": \"2443.006397\",\n        \"priceLatest\": \"2367.785983\",\n        \"tags\": []\n      }\n    },\n    {\n      \"contract\": {\n        \"displayName\": \"SOL/USDT Perps\",\n        \"id\": 3,\n        \"live\": true,\n        \"minNotional\": \"1\",\n        \"minOrderSize\": \"0.00000001\",\n        \"orderbookGranularities\": [\n          \"0.001\",\n          \"0.01\",\n          \"0.1\",\n          \"1\"\n        ],\n        \"initialMarginRate\": \"0.500000\",\n        \"maintenanceMarginRate\": \"0.400000\",\n        \"settlementDecimals\": 6,\n        \"settlementSymbol\": \"USDT\",\n        \"stepSize\": \"0.00000001\",\n        \"symbol\": \"SOL/USDT-P\",\n        \"tickSize\": \"0.0000001\",\n        \"underlyingDecimals\": 8,\n        \"underlyingSymbol\": \"SOL\"\n      },\n      \"info\": {\n        \"category\": null,\n        \"markPrice\": \"139.6038176\",\n        \"price24hAgo\": \"143.5201703\",\n        \"priceLatest\": \"139.4504197\",\n        \"tags\": []\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec56aa74-a977-4fd4-9673-95efacb2ee3c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "inventory"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b516cf90-3952-4088-8ae4-dc049b991978",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "inventory"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba4da78a-9d88-4f38-b6f4-7811c4e0dde1",
+          "name": "/market/data/prices",
+          "request": {
+            "name": "/market/data/prices",
+            "description": {
+              "content": "Usage Get the price and funding information for a future contract. Required Query Parameter symbol : the symbol of the contract you get in the response from /market/exchange-info endpoint",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "market",
+                "data",
+                "prices"
+              ],
+              "host": [
+                "data-api",
+                "hibachi",
+                "xyz"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1b17ede-c1bb-4407-8ad1-ec849a0759ea",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "prices"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"askPrice\": \"3514.650296\",\n  \"bidPrice\": \"3513.596112\",\n  \"fundingRateEstimation\": {\n    \"estimatedFundingRate\": \"0.000001\",\n    \"nextFundingTimestamp\": 1712707200\n  },\n  \"markPrice\": \"3514.288858\",\n  \"spotPrice\": \"3514.715000\",\n  \"symbol\": \"ETH/USDT-P\",\n  \"tradePrice\": \"2372.746570\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c520b02d-fb8e-4dcf-9d33-364c7d4346d6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "prices"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2a14346f-be94-48d3-8c56-de1c8318440c",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "prices"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cc09e55-601b-459b-8753-39b081551b20",
+          "name": "/market/data/stats",
+          "request": {
+            "name": "/market/data/stats",
+            "description": {
+              "content": "Usage Get general trading stats like 24h high/low/volume for a future contract. Required Query Parameter symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "market",
+                "data",
+                "stats"
+              ],
+              "host": [
+                "data-api",
+                "hibachi",
+                "xyz"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ef72aae-18a0-454a-b7a7-16725a536177",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "stats"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"high24h\": \"3819.507827\",\n  \"low24h\": \"3754.474162\",\n  \"symbol\": \"ETH/USDT-P\",\n  \"volume24h\": \"23554.858590416\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e1b1388-6377-4164-a036-e3d095ee5848",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "stats"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3bc019fd-e3b4-43d6-b344-b78845fc1f50",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "stats"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dde14f00-d56a-4c1e-a503-388d4de887fc",
+          "name": "/market/data/trades",
+          "request": {
+            "name": "/market/data/trades",
+            "description": {
+              "content": "Usage Get the most recent trades from all users for one future contract. It will return most recent up to 100 records. Required Query Parameter symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "market",
+                "data",
+                "trades"
+              ],
+              "host": [
+                "data-api",
+                "hibachi",
+                "xyz"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f9b06ba-cbf2-40ea-988a-7d6624efc2eb",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "trades"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"trades\": [\n    {\n      \"price\": \"3512.431902\",\n      \"quantity\": \"1.414780098\",\n      \"takerSide\": \"Buy\",\n      \"timestamp\": 1712692147\n    },\n    {\n      \"price\": \"3512.783321\",\n      \"quantity\": \"1.138242707\",\n      \"takerSide\": \"Sell\",\n      \"timestamp\": 1712692147\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39b69dd0-5579-4285-8ca7-c3c36303ced0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "trades"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ec515ba-77cf-4333-aecf-9a1f05203782",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "trades"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "622eed6c-7521-4c5a-9467-3a51e3ab749e",
+          "name": "/market/data/klines",
+          "request": {
+            "name": "/market/data/klines",
+            "description": {
+              "content": "Usage Get the candlesticks for a futures contract. Required Query Parameters symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint interval : Supported intervals: 1min , 5min , 15min , 1h , 4h , 1d , 1w . Optional Query Parameters fromMs : the start time in Unix millisecond timestamp of the period you want to retrieve candlesticks toMs : the end time in Unix milisecond timestamp of the period you want to retrieve candlesticks",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "market",
+                "data",
+                "klines"
+              ],
+              "host": [
+                "data-api",
+                "hibachi",
+                "xyz"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromMs",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "toMs",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20f5d026-0d67-48ed-887d-af685225d78c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "klines"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromMs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toMs",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"klines\": [\n    {\n      \"close\": \"3704.751036\",\n      \"high\": \"3716.530378\",\n      \"interval\": \"1h\",\n      \"low\": \"3699.627883\",\n      \"open\": \"3716.406894\",\n      \"timestamp\": 1712628000,\n      \"volumeNotional\": \"1637355.846362\"\n    },\n    {\n      \"close\": \"3693.029781\",\n      \"high\": \"3717.863717\",\n      \"interval\": \"1h\",\n      \"low\": \"3682.131347\",\n      \"open\": \"3706.001256\",\n      \"timestamp\": 1712631600,\n      \"volumeNotional\": \"3590375.750775\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76cd4c99-f391-485a-aaf8-2a16327c23d5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "klines"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromMs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toMs",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4520a241-99a5-45e9-bb3e-2af726ff94e2",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "klines"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromMs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toMs",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee4f3b4f-f301-42a9-b4e0-d9a2a760a5f8",
+          "name": "/market/data/open-interest",
+          "request": {
+            "name": "/market/data/open-interest",
+            "description": {
+              "content": "Usage Get the open interest for one futures contract. It will return the total open interest from each side. Required Query Parameter symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "market",
+                "data",
+                "open-interest"
+              ],
+              "host": [
+                "data-api",
+                "hibachi",
+                "xyz"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "687b0213-f463-47c2-8523-d6bd7054af6e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "open-interest"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalQuantity\": \"6.326719254\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77da1a4c-3d18-49f6-8a45-735ea04fc790",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "open-interest"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8a9bb4b1-af66-489c-ac5e-fe880540c49c",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "open-interest"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "732e531c-fb88-4b2d-8ae4-5deafd52cc4d",
+          "name": "/market/data/orderbook",
+          "request": {
+            "name": "/market/data/orderbook",
+            "description": {
+              "content": "Usage Get the orderbook price levels. It will return up to depth price levels on both side. The price level will be aggreated based on granulairty . Required Request Query Parameters symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint Optional Request Query Parameters depth should be between 1 and 100, inclusive. granularity should be one of the values in orderbookGranularities returned by market/exchange-info . Different contracts may have different orderbookGranularities .",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "market",
+                "data",
+                "orderbook"
+              ],
+              "host": [
+                "data-api",
+                "hibachi",
+                "xyz"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "depth",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "granularity",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b990e9ca-dfdb-4e6d-b664-d87c23a7b53a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "orderbook"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "depth",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ask\": {\n    \"endPrice\": \"3512.63\",\n    \"levels\": [\n      {\n        \"price\": \"3511.93\",\n        \"quantity\": \"0.284772482\"\n      },\n      {\n        \"price\": \"3512.28\",\n        \"quantity\": \"0.569544964\"\n      },\n      {\n        \"price\": \"3512.63\",\n        \"quantity\": \"0.854317446\"\n      }\n    ],\n    \"startPrice\": \"3511.93\"\n  },\n  \"bid\": {\n    \"endPrice\": \"3510.87\",\n    \"levels\": [\n      {\n        \"price\": \"3515.39\",\n        \"quantity\": \"2.345153070\"\n      },\n      {\n        \"price\": \"3511.22\",\n        \"quantity\": \"0.284772482\"\n      },\n      {\n        \"price\": \"3510.87\",\n        \"quantity\": \"0.569544964\"\n      }\n    ],\n    \"startPrice\": \"3515.39\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "615b8878-c6b8-4241-add8-24f1280ad369",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "orderbook"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "depth",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0d7946c0-3252-4d6d-8586-d01ee20b9deb",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "orderbook"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "depth",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75b3f28d-338e-4d6d-b7a0-e3c9a936f5e8",
+          "name": "/market/data/funding-rates",
+          "request": {
+            "name": "/market/data/funding-rates",
+            "description": {
+              "content": "Get the funding rate. It will return historical funding rates and index prices for a given futures contract. Notes: symbol (string, required) – The trading pair symbol (e.g., \"BTC/USDT-P\"). startTime (integer, optional) – Unix timestamp in seconds (with optional fractional part) specifying the start of the query window. Default: 7 days ago endTime (integer, optional) – Unix timestamp in seconds (with optional fractional part) specifying the end of the query window. Default: current server time limit (integer, optional) – Maximum number of results to return. Range: 1–100 Default: 50 offset (integer, optional) – Number of results to skip before starting to return data. Default: 0",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "market",
+                "data",
+                "funding-rates"
+              ],
+              "host": [
+                "data-api",
+                "hibachi",
+                "xyz"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91429843-5aaa-43d4-8a66-ab22596912ea",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "funding-rates"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79141b0d-9904-4e1d-8e05-c6bf5263a789",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "funding-rates"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "067f1479-b008-4137-a3e9-034d7a6bfce3",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "market",
+                    "data",
+                    "funding-rates"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7af32b55-6699-4f50-a10c-f79402c3c801",
+          "name": "/exchange/utc-timestamp",
+          "request": {
+            "name": "/exchange/utc-timestamp",
+            "description": {
+              "content": "Get Current UTC Timestamp Fetch the current UTC timestamp in milliseconds . This can be used for client-side time synchronization, request signing, or latency checks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "exchange",
+                "utc-timestamp"
+              ],
+              "host": [
+                "data-api",
+                "hibachi",
+                "xyz"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4277a252-7830-4186-8afe-973e6857d1b4",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "exchange",
+                    "utc-timestamp"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestampMs\": 1757118802487\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0b46953-4563-47ac-b9a4-3ca1892a1792",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "exchange",
+                    "utc-timestamp"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fc4f5903-1855-4587-99ba-3eaabe8d594e",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "exchange",
+                    "utc-timestamp"
+                  ],
+                  "host": [
+                    "data-api",
+                    "hibachi",
+                    "xyz"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hibachi.xyz",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "be72d5ec-7832-48f9-9876-82f62de1ff2b",
+    "name": "Hibachi Capital Market API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Hibachi stablecoin-native perpetual futures and FX exchange. Provides public market data plus authenticated account, trading, and capital (deposit/withdraw/transfer) operations. Most endpoints require an API key in the Authorization header; order, withdrawal, and transfer operations additionally require a cryptographic signature (ECDSA for trustless accounts, HMAC for exchange-managed accounts). Converted faithfully from Hibachi's published public Postman collection.\n\nContact Support:\n Name: Hibachi",
+      "type": "text/plain"
+    }
+  }
+}

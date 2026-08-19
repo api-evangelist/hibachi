@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hibachi Capital API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Capital",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/capital/balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/capital/balance",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Get the balance of your account. The returned balance is your net equity which includes unrealized PnL. Required Request Parameter: accountId: The account ID can be found on the UI details page of each API Key. Your Account ID will not be generated until your first deposit"
+        },
+        {
+          "info": {
+            "name": "/capital/history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/capital/history",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Get the deposit and withdraw history of your account. It will return most recent up to 100 deposit and 100 withdraw. Required Request Parameter: accountId : The account ID can be found on the UI details page of each API Key. Your Account ID will not be generated until your first deposit; this ID is required for a lot of endpoints"
+        },
+        {
+          "info": {
+            "name": "/capital/withdraw",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hibachi.xyz/capital/withdraw",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Submit a withdraw request. Signing Use below field to sign the message and pass it in to signature field (65 bytes). Refer to the Signing section for more context assetId (4 bytes) quantity (8 bytes): should be no more than maximalWithdraw returned by /trade/account/info endpoint, otherwise it will be rejected. maxFees (8 bytes): should be at least returned by /market/exchange-info endpoint, otherwise it will be rejected. withdrawalAddress (20 bytes) Request Body Payload Required Fields ac"
+        },
+        {
+          "info": {
+            "name": "/capital/transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hibachi.xyz/capital/transfer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Submit a withdraw request. Signing Use below field to sign the message and pass it in to signature field (65 bytes). Refer to the Signing section for more context nonce (8 bytes) assetId (4 bytes) quantity (8 bytes) dstPublicKey (20 bytes) maxFeesPercent (8 bytes), should be at least returned value at /market/exchange-info endpoint, otherwise, it will be rejected. Required Request Body accountId coin fees nonce quantity receivingAddress signature Currently, the only coin we support is USDT"
+        },
+        {
+          "info": {
+            "name": "/capital/deposit-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/capital/deposit-info",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "publicKey",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Get deposit address for a given account. Sending funds to this address allows for Required Request Parameter: ** publicKey: **The public key of the account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

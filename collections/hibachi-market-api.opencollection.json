@@ -1,0 +1,217 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hibachi Capital Market API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Market",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/market/exchange-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/market/exchange-info"
+          },
+          "docs": "Usage Return exchange metadata, currently it will return all futureContracts . Also returns a list of exchange maintenance windows in the \"maintenanceWindow\" field. For each window, the fields \"begin\" and \"end\" denote the beginning and end of the window, in seconds since the UNIX epoch. The field \"note\" contains a note. The field \"maintenanceStatus\" can have the values \"NORMAL\", \"UNSCHEDULED_MAINTENANCE\", \"SCHEDULED_MAINTENANCE\". If the exchange is currently under scheduled maintenance, the fiel"
+        },
+        {
+          "info": {
+            "name": "/market/inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/market/inventory"
+          },
+          "docs": "Usage Similar to /market/exchange-info , except in addition to the contract metadata this endpoint will return price information"
+        },
+        {
+          "info": {
+            "name": "/market/data/prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/market/data/prices",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Usage Get the price and funding information for a future contract. Required Query Parameter symbol : the symbol of the contract you get in the response from /market/exchange-info endpoint"
+        },
+        {
+          "info": {
+            "name": "/market/data/stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/market/data/stats",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Usage Get general trading stats like 24h high/low/volume for a future contract. Required Query Parameter symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint"
+        },
+        {
+          "info": {
+            "name": "/market/data/trades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/market/data/trades",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Usage Get the most recent trades from all users for one future contract. It will return most recent up to 100 records. Required Query Parameter symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint"
+        },
+        {
+          "info": {
+            "name": "/market/data/klines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/market/data/klines",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromMs",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toMs",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Usage Get the candlesticks for a futures contract. Required Query Parameters symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint interval : Supported intervals: 1min , 5min , 15min , 1h , 4h , 1d , 1w . Optional Query Parameters fromMs : the start time in Unix millisecond timestamp of the period you want to retrieve candlesticks toMs : the end time in Unix milisecond timestamp of the period you want to retrieve candlesticks"
+        },
+        {
+          "info": {
+            "name": "/market/data/open-interest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/market/data/open-interest",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Usage Get the open interest for one futures contract. It will return the total open interest from each side. Required Query Parameter symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint"
+        },
+        {
+          "info": {
+            "name": "/market/data/orderbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/market/data/orderbook",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "depth",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Usage Get the orderbook price levels. It will return up to depth price levels on both side. The price level will be aggreated based on granulairty . Required Request Query Parameters symbol : the symbol of the contrat you get in the response from /market/exchange-info endpoint Optional Request Query Parameters depth should be between 1 and 100, inclusive. granularity should be one of the values in orderbookGranularities returned by market/exchange-info . Different contracts may have different or"
+        },
+        {
+          "info": {
+            "name": "/market/data/funding-rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/market/data/funding-rates",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the funding rate. It will return historical funding rates and index prices for a given futures contract. Notes: symbol (string, required) – The trading pair symbol (e.g., \"BTC/USDT-P\"). startTime (integer, optional) – Unix timestamp in seconds (with optional fractional part) specifying the start of the query window. Default: 7 days ago endTime (integer, optional) – Unix timestamp in seconds (with optional fractional part) specifying the end of the query window. Default: current server time l"
+        },
+        {
+          "info": {
+            "name": "/exchange/utc-timestamp",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/exchange/utc-timestamp"
+          },
+          "docs": "Get Current UTC Timestamp Fetch the current UTC timestamp in milliseconds . This can be used for client-side time synchronization, request signing, or latency checks."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

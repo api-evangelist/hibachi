@@ -2,8 +2,8 @@ generated: '2026-07-19'
 method: derived
 status: candidate
 source: openapi/hibachi-openapi.yml
-note: No official hosted MCP server found for Hibachi at capture time. Candidate tool list derived one-per-operation from
-  the converted OpenAPI.
+note: No official hosted MCP server found for Hibachi at capture time. Candidate tool list derived one-per-operation
+  from the converted OpenAPI.
 server:
   name: hibachi
   transport: stdio
@@ -89,3 +89,9 @@ tools:
 - name: getUtcTimestamp
   description: /exchange/utc-timestamp
   source_operation: openapi/hibachi-openapi.yml#getUtcTimestamp
+deployment:
+  mode: none
+  verified: derived
+  tools: 27
+  checked: '2026-08-12'
+  source: catalog MCP census

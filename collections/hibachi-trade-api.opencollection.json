@@ -1,0 +1,303 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hibachi Capital Trade API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Trade",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/trade/account/info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/trade/account/info",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Get account information/details Required Query Parameter accountId Key Response Fields balance (net equity) and maximalWithdraw (collateral) assets positions risk related summary: totalOrderNotional , totalPositionNotional , totalUnrealizedPnl , initialMargin , maintenanceMargin The entryNotional in positions is: entry price multiply by quantity. totalOrderNotional does not count orders that will reduce your position. leverages : the custom leverage settings set by /trade/account/leverage "
+        },
+        {
+          "info": {
+            "name": "/trade/account/trades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/trade/account/trades",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Get the trade history of your account. The id returned from one response should be used for pagination. Required Query Parameter accountId Optional Query Parameters maxJournalId : This is used for pagination. This is not needed to be set on the first request. All trades with id less than or equal to this value will be returned in descending order. limit : The number of trades to return (Default: 100) contractId : The market to filter by. (Default: returns all trades across all markets) sid"
+        },
+        {
+          "info": {
+            "name": "/trade/account/settlements_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/trade/account/settlements_history",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage You can obtain the history of funding events using the /trade/account/settlements_history endpoint. Required Query Parameter accountId Optional Query Parameters page - number used for pagination limit - number of results to return for a single call contractId - the market to filter by startTime - filter events by start time endTime - filter events by end time"
+        },
+        {
+          "info": {
+            "name": "/trade/orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/trade/orders",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Get the pending orders of your account. Required Query Parameter accountId Response Key Fields total_quantity is the quantity you specify when you submit the order. available_quantity is the quanaity that is remaining for match. It is total_quantity minus matched quantity."
+        },
+        {
+          "info": {
+            "name": "/trade/orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hibachi.xyz/trade/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Submit multiple new order requests for an account. Supports place , and modify . The format is identical to POST /trade/order , the only differences are: accountId is specified in the top-level only once rather than for each order each order element needs to have an action field which can be either place , or modify It will return a list of responses – one for each order in the input. Signing Use below field to sign the message and pass it in to signature field (65 bytes). Refer to the Sig"
+        },
+        {
+          "info": {
+            "name": "/trade/orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hibachi.xyz/trade/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Allows you to batch cancel all open orders for an account. Signing: Refer to the Signing section for more context nonce needs to be a unique valid timestamp nonce and needs to be used as the payload for signature Request Body Required Fields accountId nonce signature Optional Request Body Fields: contractId"
+        },
+        {
+          "info": {
+            "name": "/trade/order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/trade/order",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Get the details about one particular order . Required Query Parameter accountId Order identifier - exactly one of: orderId : should be the orderId returned by /trade/order or /trade/orders clientId : please see the documentation in POST /trade/order for more details nonce used when submitting the order"
+        },
+        {
+          "info": {
+            "name": "/trade/order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hibachi.xyz/trade/order",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Submit a new order. In the response, it will return the order_id for this new order. Signing Use below field to sign the message and pass it in to signature field (65 bytes) Refer to the Signing section for more context nonce contractId quantity side price maxFeesPercent, should be at least the returned value of /market/exchange-info endpoint. Otherwise, it will be rejected. creationDeadline (Optional) triggerPrice (Optional) Required Request Body Fields: accountId : your account ID, you c"
+        },
+        {
+          "info": {
+            "name": "/trade/order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hibachi.xyz/trade/order",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Modify an existing order. Signing Refer to the Signing section for more context Request Body Required Fields: Order identifier - exactly one of: orderId : should be the orderId returned by /trade/order or /trade/orders clientId : please see the documentation in POST /trade/order for more details nonce : nonce used to create the order initially nonce : A new unique nonce timestamp (same as if you were placing a new order). You can only update quantity and price . The symbol must remain the "
+        },
+        {
+          "info": {
+            "name": "/trade/order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hibachi.xyz/trade/order",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Remove an existing order. Signing Use below field to sign the message and pass it in to signature field (65 bytes). Refer to the Signing section for more context Order identifier - exactly one of: orderId : should be the orderId returned by /trade/order or /trade/orders clientId : please see the documentation in POST /trade/order Request Body Required Fields: accountId Order identifier - exactly one of: orderId : should be the orderId returned by /trade/order or /trade/orders clientId : pl"
+        },
+        {
+          "info": {
+            "name": "/trade/account/leverage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hibachi.xyz/trade/account/leverage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Usage Set the custom leverage for one contract Required Query Parameter accountId symbol initialMarginRate: the inverse of leverage. (\"0.5\" means 2x leverage) Notes The initialMarginRate must be between the default value and 1. When you increase initialMarginRate , after that your initial margin should still be no more than your net equity."
+        },
+        {
+          "info": {
+            "name": "/trade/orders/history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hibachi.xyz/trade/orders/history",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startTime\"",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Request Parameters accountId (required): The unique identifier for the account whose order history is being queried. marketSymbols (optional): Array of market symbols to filter by (e.g. [\"ETH/USDT-P\", \"BTC/USDT-P\"] ). When omitted, all markets are returned. side (optional): Filter by order side. Accepted values: buy or sell . When omitted, both sides are returned. status (optional): Filter by terminal status. Accepted values: filled , cancelled , partial_cancelled , rejected . When omitted, all "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
