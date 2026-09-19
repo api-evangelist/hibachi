@@ -94,6 +94,8 @@ apis:
   humanURL: https://api-doc.hibachi.xyz/
   baseURL: https://api.hibachi.xyz
   tags:
+  - Markets
+  tags_raw:
   - Market
   properties:
   - type: OpenAPI
