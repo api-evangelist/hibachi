@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Hibachi Capital Market API
+  title: Hibachi Market API
   version: 1.0.0
   description: REST API for the Hibachi stablecoin-native perpetual futures and FX exchange. Provides public market data plus authenticated account, trading, and capital (deposit/withdraw/transfer) operations. Most endpoints require an API key in the Authorization header; order, withdrawal, and transfer operations additionally require a cryptographic signature (ECDSA for trustless accounts, HMAC for exchange-managed accounts). Converted faithfully from Hibachi's published public Postman collection.
   contact:
