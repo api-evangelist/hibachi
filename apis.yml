@@ -57,6 +57,7 @@ tags:
 - Stablecoins
 - WebSocket
 - Blockchain
+- Real-Time
 tags_raw:
 - Company
 - Defi
@@ -68,6 +69,7 @@ tags_raw:
 - Stablecoin
 - WebSocket
 - Blockchain
+- Real-Time
 image: https://hibachi.xyz/favicon.ico
 apis:
 - aid: hibachi:hibachi-capital-api
