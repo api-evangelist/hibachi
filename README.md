@@ -64,6 +64,134 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Hibachi is a company surfaced as a portfolio company of electric-capital and added to the API Evangelist network as a stub for enrichment. Sector: defi. This profile is a lead awaiting the enrichment pipeline.
+Hibachi is a stablecoin-native, privacy-first decentralized exchange for perpetual futures and FX trading. Built by contributors from Citadel, Tower Research, IMC, Meta, Google and Amazon, it pairs a low-latency central-limit-orderbook trading engine with a zk-verified settlement layer, so collateral only moves on-chain when validated by a zero-knowledge proof. Hibachi exposes a public REST and WebSocket API across two hosts (api.hibachi.xyz for account, trading and capital operations; data-api.hibachi.xyz for market data), an official Python SDK, a TypeScript example integration, and a CCXT integration. Authentication uses an API key in the Authorization header, and order, withdraw and transfer operations additionally require an ECDSA or HMAC request signature. It is backed by Electric Capital.
 
-Backed by: electric-capital — https://hibachi.xyz/
+**Areas:** Company · DeFi · Cryptocurrency · Exchange · Perpetual Futures · Trading · Derivatives · Stablecoins · WebSocket · Blockchain · Real-Time
+
+## Hibachi on APIs.io
+
+Everything profiled for Hibachi is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hibachi/](https://apis.io/providers/hibachi/)** — or go straight to one of the APIs or properties below.
+
+### APIs (3)
+
+- [Hibachi Capital API](https://apis.io/apis/hibachi/hibachi-capital-api/) — Authenticated capital movement: balance, deposit info, withdraw, transfer
+- [Hibachi Market API](https://apis.io/apis/hibachi/hibachi-market-api/) — Public market data: contracts, prices, stats, trades, klines, orderbook, funding rates
+- [Hibachi Trade API](https://apis.io/apis/hibachi/hibachi-trade-api/) — Authenticated trading: orders, positions, account info, settlements, leverage
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Hibachi WebSocket API](https://apis.io/asyncapis/hibachi/hibachi-ws-asyncapi/)
+
+#### Event channels (2)
+
+Individual events and webhooks the provider emits.
+
+- [/ws](https://apis.io/channels/hibachi/ws/)
+- [/ws/market](https://apis.io/channels/hibachi/ws-market/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [hibachi](https://apis.io/servers/hibachi/hibachi/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Hibachi Agentic Access](https://apis.io/agentic-access/hibachi/hibachi-agentic-access/)
+
+#### Collections (3)
+
+Postman and Open Collection request collections.
+
+- [Hibachi Capital API](https://apis.io/collections/hibachi/open-hibachi-capital-api/)
+- [Hibachi Capital Market API](https://apis.io/collections/hibachi/open-hibachi-market-api/)
+- [Hibachi Capital Trade API](https://apis.io/collections/hibachi/open-hibachi-trade-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Hibachi Openapi Overlay](https://apis.io/overlays/hibachi/hibachi-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Hibachi Authentication](https://apis.io/security/hibachi/hibachi-authentication/)
+- [Hibachi Domain Security](https://apis.io/security/hibachi/hibachi-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://hibachi.xyz/)
+- [Documentation](https://docs.hibachi.xyz/hibachi-docs/api-and-developer-tools.md)
+- [Getting started](https://docs.hibachi.xyz/hibachi-docs/getting-started.md)
+- [API reference](https://api-doc.hibachi.xyz/)
+- [Pricing](https://docs.hibachi.xyz/hibachi-docs/trading/fees.md)
+- [Sign up](https://hibachi.xyz/)
+- [Blog](https://blog.hibachi.xyz/)
+- [Terms of service](https://hibachi.xyz/terms)
+- [Privacy policy](https://hibachi.xyz/privacy)
+- [GitHub](https://github.com/hibachi-xyz)
+
+## API Evangelist rating
+
+**Kin Score 38.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 24.6 |
+| Contract governance | 18.2 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 67.3 |
+| Access clarity | 44.7 |
+
+**Agent readiness 30.0** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 23.1** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hibachi/](https://apis.io/providers/hibachi/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hibachi: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hibachi/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
